@@ -164,7 +164,7 @@ export default function OrderTrackingView() {
                     <span className="text-slate-700 truncate max-w-[200px] font-medium">
                       {it.quantity}x {it.title} ({it.variant})
                     </span>
-                    <span className="font-bold text-slate-900">${(it.retailPrice * it.quantity).toFixed(2)}</span>
+                    <span className="font-bold text-slate-900">₹{(it.retailPrice * it.quantity).toLocaleString('en-IN')}</span>
                   </div>
                 ))}
               </div>

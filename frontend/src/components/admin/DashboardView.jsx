@@ -80,7 +80,7 @@ export default function DashboardView() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-2xl font-black text-slate-900">${metrics.grossRevenue.toFixed(2)}</h3>
+            <h3 className="text-2xl font-black text-slate-900">₹{metrics.grossRevenue.toLocaleString('en-IN')}</h3>
             <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1 mt-1">
               <TrendingUp className="w-3 h-3" /> +18.4% vs last week
             </span>
@@ -96,7 +96,7 @@ export default function DashboardView() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-2xl font-black text-emerald-600">${metrics.netProfit.toFixed(2)}</h3>
+            <h3 className="text-2xl font-black text-emerald-600">₹{metrics.netProfit.toLocaleString('en-IN')}</h3>
             <span className="text-[11px] text-slate-500 font-semibold block mt-1">
               Net Margin: <strong className="text-emerald-700">{netMarginPercent}%</strong>
             </span>
@@ -112,9 +112,9 @@ export default function DashboardView() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-2xl font-black text-slate-800">${metrics.totalCost.toFixed(2)}</h3>
+            <h3 className="text-2xl font-black text-slate-800">₹{metrics.totalCost.toLocaleString('en-IN')}</h3>
             <span className="text-[11px] text-slate-500 font-semibold block mt-1">
-              Prepaid vendor balance: <strong className="text-blue-600">$5,160.50</strong>
+              Prepaid vendor balance: <strong className="text-blue-600">₹3,97,500</strong>
             </span>
           </div>
         </div>
@@ -162,11 +162,11 @@ export default function DashboardView() {
           <div className="flex items-center justify-between text-xs pt-1">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-              <span className="text-slate-600">Net Profit: <strong className="text-slate-900">${metrics.netProfit.toFixed(2)} ({netMarginPercent}%)</strong></span>
+              <span className="text-slate-600">Net Profit: <strong className="text-slate-900">₹{metrics.netProfit.toLocaleString('en-IN')} ({netMarginPercent}%)</strong></span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-slate-400"></span>
-              <span className="text-slate-600">Wholesale Supplier Cost: <strong className="text-slate-900">${metrics.totalCost.toFixed(2)}</strong></span>
+              <span className="text-slate-600">Wholesale Supplier Cost: <strong className="text-slate-900">₹{metrics.totalCost.toLocaleString('en-IN')}</strong></span>
             </div>
           </div>
         </div>
@@ -224,13 +224,13 @@ export default function DashboardView() {
                       <span className="text-[10px] text-blue-600 font-mono">{p.supplier?.platform || 'Direct Vendor'}</span>
                     </td>
                     <td className="py-3 px-4 font-mono font-medium text-slate-600">
-                      ${(p.supplierCost || p.price * 0.35).toFixed(2)}
+                      ₹{(p.supplierCost || p.price * 0.4).toLocaleString('en-IN')}
                     </td>
                     <td className="py-3 px-4 font-mono font-bold text-slate-900">
-                      ${p.price.toFixed(2)}
+                      ₹{p.price.toLocaleString('en-IN')}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="font-mono font-bold text-emerald-600">+${margin.toFixed(2)}</span>
+                      <span className="font-mono font-bold text-emerald-600">+₹{margin.toLocaleString('en-IN')}</span>
                       <span className="text-[10px] text-slate-500 ml-1 font-semibold">({marginPct}%)</span>
                     </td>
                     <td className="py-3 px-4 text-right font-semibold">

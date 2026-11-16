@@ -82,10 +82,10 @@ export default function HeroBanner() {
               </div>
               <h4 className="text-white font-bold text-sm mt-1">Aura SoundPulse Pro ANC</h4>
               <div className="flex items-center gap-2 mt-2">
-                <span className="text-lg font-black text-white">$89.99</span>
-                <span className="text-xs text-slate-500 line-through">$149.99</span>
+                <span className="text-lg font-black text-white">₹4,999</span>
+                <span className="text-xs text-slate-500 line-through">₹8,499</span>
                 <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800">
-                  Save $60
+                  Save ₹3,500
                 </span>
               </div>
             </div>

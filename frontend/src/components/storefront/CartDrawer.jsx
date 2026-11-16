@@ -20,7 +20,7 @@ export default function CartDrawer() {
 
   if (!cartOpen) return null;
 
-  const FREE_SHIPPING_THRESHOLD = 75.00;
+  const FREE_SHIPPING_THRESHOLD = 1999;
   const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - cartSubtotal);
   const freeShippingProgress = Math.min(100, (cartSubtotal / FREE_SHIPPING_THRESHOLD) * 100);
 
@@ -71,7 +71,7 @@ export default function CartDrawer() {
                 <div className="flex items-center justify-between text-blue-900 font-medium">
                   <span className="flex items-center gap-1.5">
                     <Truck className="w-3.5 h-3.5 text-blue-600" />
-                    Add <strong className="font-bold text-blue-700">${amountToFreeShipping.toFixed(2)}</strong> for Free Express Air!
+                    Add <strong className="font-bold text-blue-700">₹{amountToFreeShipping.toLocaleString('en-IN')}</strong> for Free Express Air!
                   </span>
                   <span className="font-bold text-blue-600">{Math.round(freeShippingProgress)}%</span>
                 </div>
@@ -160,7 +160,7 @@ export default function CartDrawer() {
                       </div>
 
                       <span className="text-xs font-black text-slate-900">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
                       </span>
                     </div>
                   </div>
@@ -196,12 +196,12 @@ export default function CartDrawer() {
               <div className="space-y-1.5 text-xs text-slate-600">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span className="font-semibold text-slate-900">${cartSubtotal.toFixed(2)}</span>
+                  <span className="font-semibold text-slate-900">₹{cartSubtotal.toLocaleString('en-IN')}</span>
                 </div>
                 {appliedDiscount > 0 && (
                   <div className="flex justify-between text-emerald-600 font-medium">
                     <span>Promo Discount (15%)</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
+                    <span>-₹{Math.round(discountAmount).toLocaleString('en-IN')}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
@@ -216,7 +216,7 @@ export default function CartDrawer() {
                 </div>
                 <div className="flex justify-between text-sm font-black text-slate-900 pt-2 border-t border-slate-100">
                   <span>Estimated Total</span>
-                  <span className="text-blue-600 text-base">${estimatedTotal.toFixed(2)}</span>
+                  <span className="text-blue-600 text-base">₹{Math.round(estimatedTotal).toLocaleString('en-IN')}</span>
                 </div>
               </div>
 

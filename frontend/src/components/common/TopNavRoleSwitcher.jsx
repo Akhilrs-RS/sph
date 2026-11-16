@@ -50,7 +50,7 @@ export default function TopNavRoleSwitcher() {
           ) : (
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex items-center gap-3 text-slate-300 mr-2 border-r border-slate-700 pr-3">
-                <span>Revenue: <strong className="text-emerald-400 font-semibold">${metrics.grossRevenue.toFixed(2)}</strong></span>
+                <span>Revenue: <strong className="text-emerald-400 font-semibold">₹{metrics.grossRevenue.toLocaleString('en-IN')}</strong></span>
                 <span>Margin: <strong className="text-blue-400 font-semibold">{metrics.grossRevenue ? ((metrics.netProfit / metrics.grossRevenue) * 100).toFixed(1) : 0}%</strong></span>
               </div>
               <button

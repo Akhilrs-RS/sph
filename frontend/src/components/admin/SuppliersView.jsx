@@ -6,7 +6,7 @@ export default function SuppliersView() {
   const { suppliers, showToast } = useApp();
 
   const handleTopUp = (supName) => {
-    showToast(`$500.00 added to ${supName} prepaid fulfillment wallet!`, 'success');
+    showToast(`₹50,000 added to ${supName} prepaid fulfillment wallet!`, 'success');
   };
 
   return (

@@ -143,13 +143,13 @@ export default function OrdersFulfillmentView() {
 
                       {/* Revenue & Cost */}
                       <td className="py-3.5 px-4 font-mono">
-                        <span className="font-bold text-slate-900 block">${order.totalAmount.toFixed(2)}</span>
-                        <span className="text-[10px] text-slate-600">Cost: ${order.totalCost.toFixed(2)}</span>
+                        <span className="font-bold text-slate-900 block">₹{order.totalAmount.toLocaleString('en-IN')}</span>
+                        <span className="text-[10px] text-slate-600">Cost: ₹{order.totalCost.toLocaleString('en-IN')}</span>
                       </td>
 
                       {/* Margin */}
                       <td className="py-3.5 px-4 font-mono">
-                        <span className="font-bold text-emerald-600 block">+${order.grossProfit.toFixed(2)}</span>
+                        <span className="font-bold text-emerald-600 block">+₹{order.grossProfit.toLocaleString('en-IN')}</span>
                         <span className="text-[10px] text-slate-600">
                           {((order.grossProfit / order.totalAmount) * 100).toFixed(0)}% margin
                         </span>
@@ -267,7 +267,7 @@ export default function OrdersFulfillmentView() {
 
               <div className="pt-2 flex justify-between font-bold text-slate-900 text-sm">
                 <span>Calculated Net Margin:</span>
-                <span className="text-emerald-600 font-black">+${inspectOrder.grossProfit.toFixed(2)}</span>
+                <span className="text-emerald-600 font-black">+₹{inspectOrder.grossProfit.toLocaleString('en-IN')}</span>
               </div>
             </div>
 
@@ -281,7 +281,7 @@ export default function OrdersFulfillmentView() {
                   className="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow shadow-emerald-600/20 flex items-center justify-center gap-1.5"
                 >
                   <Zap className="w-3.5 h-3.5 fill-white" />
-                  <span>Execute Supplier PO ($ {inspectOrder.totalCost.toFixed(2)})</span>
+                  <span>Execute Supplier PO (₹{inspectOrder.totalCost.toLocaleString('en-IN')})</span>
                 </button>
               )}
             </div>

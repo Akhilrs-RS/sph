@@ -15,3 +15,4 @@ npm run dev
 Visit `http://localhost:3000` to view the platform.
 
 For detailed documentation on features and architecture, see [frontend/README.md](frontend/README.md).
+

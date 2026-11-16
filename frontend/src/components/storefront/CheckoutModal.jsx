@@ -20,18 +20,18 @@ export default function CheckoutModal() {
   const [confirmedOrder, setConfirmedOrder] = useState(null);
 
   const [formData, setFormData] = useState({
-    name: 'Alex Morgan',
-    email: 'alex.m@example.com',
-    address: '500 Howard Street, Suite 400',
-    city: 'San Francisco',
-    state: 'CA',
-    zip: '94105',
-    country: 'United States'
+    name: 'Aarav Sharma',
+    email: 'aarav.s@example.com',
+    address: 'B-402 Prestige Palms, Indiranagar',
+    city: 'Bengaluru',
+    state: 'KA',
+    zip: '560038',
+    country: 'India'
   });
 
   if (!checkoutOpen) return null;
 
-  const expressFee = shippingOption === 'express' ? 9.99 : 0.00;
+  const expressFee = shippingOption === 'express' ? 199 : 0;
   const finalTotal = cartSubtotal + expressFee;
 
   const handleInputChange = (e) => {
@@ -227,11 +227,11 @@ export default function CheckoutModal() {
                         className="text-blue-600 focus:ring-blue-500"
                       />
                       <div>
-                        <p className="text-xs font-bold text-slate-900">Priority Air Line-Haul Express (YunExpress)</p>
-                        <p className="text-[11px] text-slate-500">3-5 business days expedited direct cargo flight</p>
+                        <p className="text-xs font-bold text-slate-900">Priority Air Line-Haul Express (BlueDart / Delhivery)</p>
+                        <p className="text-[11px] text-slate-500">2-3 business days expedited direct domestic transit</p>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-slate-900">+$9.99</span>
+                    <span className="text-xs font-bold text-slate-900">+₹199</span>
                   </div>
                 </label>
               </div>
@@ -267,28 +267,28 @@ export default function CheckoutModal() {
               <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-1.5">
                 <div className="flex justify-between text-slate-600">
                   <span>Items ({cart.length})</span>
-                  <span>${cartSubtotal.toFixed(2)}</span>
+                  <span>₹{cartSubtotal.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Shipping ({shippingOption === 'express' ? 'Priority Air' : 'Standard'})</span>
-                  <span>{expressFee > 0 ? `$${expressFee.toFixed(2)}` : 'FREE'}</span>
+                  <span>{expressFee > 0 ? `+₹${expressFee.toLocaleString('en-IN')}` : 'FREE'}</span>
                 </div>
                 <div className="flex justify-between text-sm font-black text-slate-900 pt-2 border-t border-slate-200">
                   <span>Final Authorization</span>
-                  <span className="text-blue-600 font-black">${finalTotal.toFixed(2)}</span>
+                  <span className="text-blue-600 font-black">₹{finalTotal.toLocaleString('en-IN')}</span>
                 </div>
               </div>
 
               {/* Mock Credit Card box */}
               <div className="p-4 rounded-2xl border border-blue-200 bg-blue-50/50 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800">Simulated Payment Gateway</span>
+                  <span className="text-xs font-bold text-slate-800">Simulated UPI & Card Gateway</span>
                   <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">
                     Sandbox Demo Mode
                   </span>
                 </div>
                 <div className="text-xs text-slate-600 font-mono bg-white p-2.5 rounded-xl border border-slate-200 flex justify-between items-center">
-                  <span>•••• •••• •••• 4242</span>
+                  <span>•••• •••• •••• 4242 / UPI ID: buyer@okhdfc</span>
                   <span className="text-slate-400">12/28</span>
                 </div>
                 <p className="text-[11px] text-slate-500 leading-relaxed">
@@ -310,7 +310,7 @@ export default function CheckoutModal() {
                   className="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 px-6 rounded-xl text-xs flex items-center gap-2 transition shadow-lg shadow-emerald-600/25"
                 >
                   <ShieldCheck className="w-4 h-4" />
-                  <span>Authorize & Place Dropship Order (${finalTotal.toFixed(2)})</span>
+                  <span>Authorize & Place Dropship Order (₹{finalTotal.toLocaleString('en-IN')})</span>
                 </button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-// Realistic, high-resolution product images and dropshipping data
+// Realistic, high-resolution product images and dropshipping data in INR (Indian Rupee)
 
 export const initialStoreProducts = [
   {
@@ -6,14 +6,14 @@ export const initialStoreProducts = [
     title: "Aura SoundPulse Pro ANC Headphones",
     tagline: "Hybrid Active Noise Cancellation with 48h Battery Life",
     category: "Electronics",
-    price: 89.99,
-    compareAtPrice: 149.99,
-    supplierCost: 29.50,
-    shippingCost: 4.80,
+    price: 4999,
+    compareAtPrice: 8499,
+    supplierCost: 1999,
+    shippingCost: 199,
     rating: 4.8,
     reviewsCount: 342,
     stock: 124,
-    shippingDays: "4-7 business days",
+    shippingDays: "3-5 business days",
     badge: "Bestseller",
     images: [
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
@@ -22,7 +22,7 @@ export const initialStoreProducts = [
     ],
     variants: [
       { name: "Color", options: ["Matte Black", "Silver Frost", "Midnight Navy"] },
-      { name: "Edition", options: ["Standard", "Pro Travel Bundle (+$15)"] }
+      { name: "Edition", options: ["Standard", "Pro Travel Bundle (+₹899)"] }
     ],
     description: "Experience studio-grade acoustics paired with industry-leading 35dB active noise cancellation. Features ultra-soft memory foam earcups, multi-device Bluetooth 5.3 pairing, and rapid USB-C fast charging.",
     features: [
@@ -35,7 +35,7 @@ export const initialStoreProducts = [
       name: "Shenzhen SoundTech Ltd.",
       platform: "CJ Dropshipping",
       sku: "CJ-AUDIO-9921",
-      warehouse: "Shenzhen, CN / US East Hub"
+      warehouse: "Bengaluru Hub / Shenzhen Direct"
     }
   },
   {
@@ -43,14 +43,14 @@ export const initialStoreProducts = [
     title: "Lumino Horizon Ambient RGB Lightbar",
     tagline: "Dynamic Screen Sync with Smart App & Voice Control",
     category: "Smart Home",
-    price: 49.99,
-    compareAtPrice: 79.99,
-    supplierCost: 16.20,
-    shippingCost: 3.50,
+    price: 2799,
+    compareAtPrice: 4499,
+    supplierCost: 1099,
+    shippingCost: 149,
     rating: 4.7,
     reviewsCount: 218,
     stock: 89,
-    shippingDays: "5-8 business days",
+    shippingDays: "4-6 business days",
     badge: "Trending",
     images: [
       "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
@@ -58,7 +58,7 @@ export const initialStoreProducts = [
     ],
     variants: [
       { name: "Base Style", options: ["Desk Stand", "Monitor Mount Dual"] },
-      { name: "Control", options: ["Tuya WiFi + RF Remote", "Matter Compatible (+$8)"] }
+      { name: "Control", options: ["Tuya WiFi + RF Remote", "Matter Compatible (+₹499)"] }
     ],
     description: "Transform your battlestation or entertainment center with vibrant 16-million-color immersion. Real-time acoustic audio visualization and ambient backlighting enhance viewing comfort.",
     features: [
@@ -71,22 +71,22 @@ export const initialStoreProducts = [
       name: "Zhejiang OptoTech Co.",
       platform: "AliExpress Direct",
       sku: "ALI-RGB-4029",
-      warehouse: "Yiwu, CN"
+      warehouse: "Mumbai Gateway Logistics"
     }
   },
   {
     id: "prod-3",
     title: "VortexFlow Ceramic Smart Heating Mug",
-    tagline: "App-Controlled Exact Temperature Retention (120°F - 145°F)",
+    tagline: "App-Controlled Exact Temperature Retention (49°C - 63°C)",
     category: "Lifestyle",
-    price: 64.99,
-    compareAtPrice: 99.99,
-    supplierCost: 21.00,
-    shippingCost: 4.10,
+    price: 3499,
+    compareAtPrice: 5999,
+    supplierCost: 1499,
+    shippingCost: 199,
     rating: 4.9,
     reviewsCount: 512,
     stock: 67,
-    shippingDays: "3-6 business days",
+    shippingDays: "3-5 business days",
     badge: "Hot Deal",
     images: [
       "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80",
@@ -94,11 +94,11 @@ export const initialStoreProducts = [
     ],
     variants: [
       { name: "Color", options: ["Ceramic White", "Obsidian Black", "Sage Green"] },
-      { name: "Capacity", options: ["10 oz (295ml)", "14 oz (414ml)"] }
+      { name: "Capacity", options: ["300ml Standard", "420ml Grande"] }
     ],
     description: "Keep your coffee or tea at your precise drinking temperature for up to 3 hours on battery, or all day on the included wireless charging coaster.",
     features: [
-      "Precision temperature control (120°F - 145°F)",
+      "Precision temperature control (49°C - 63°C)",
       "Scratch-resistant ceramic coating over stainless steel",
       "Smart LED temperature indicator ring",
       "Auto-sleep sensing technology"
@@ -107,7 +107,7 @@ export const initialStoreProducts = [
       name: "Ningbo ThermalWare Inc.",
       platform: "Spocket US",
       sku: "SPK-MUG-108",
-      warehouse: "California, USA"
+      warehouse: "Delhi NCR Direct Hub"
     }
   },
   {
@@ -115,14 +115,14 @@ export const initialStoreProducts = [
     title: "Aerolight Titanium Minimalist Key Organizer",
     tagline: "Grade-5 Titanium with Multi-Tool & Airtag Integration",
     category: "Everyday Carry",
-    price: 34.99,
-    compareAtPrice: 54.99,
-    supplierCost: 9.80,
-    shippingCost: 2.20,
+    price: 1899,
+    compareAtPrice: 2999,
+    supplierCost: 699,
+    shippingCost: 99,
     rating: 4.6,
     reviewsCount: 147,
     stock: 210,
-    shippingDays: "3-5 business days",
+    shippingDays: "2-4 business days",
     badge: "Compact",
     images: [
       "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80",
@@ -143,7 +143,7 @@ export const initialStoreProducts = [
       name: "Dongguan Precision CNC",
       platform: "CJ Dropshipping",
       sku: "CJ-EDC-0912",
-      warehouse: "Dongguan, CN"
+      warehouse: "Hyderabad Express Line"
     }
   },
   {
@@ -151,14 +151,14 @@ export const initialStoreProducts = [
     title: "Chronos Ultra-Slim Fitness & Sleep Tracker",
     tagline: "AMOLED Curved Display with 14-Day Battery & Blood Oxygen Monitor",
     category: "Electronics",
-    price: 59.99,
-    compareAtPrice: 89.99,
-    supplierCost: 19.50,
-    shippingCost: 3.20,
+    price: 3999,
+    compareAtPrice: 6499,
+    supplierCost: 1599,
+    shippingCost: 149,
     rating: 4.7,
     reviewsCount: 289,
     stock: 94,
-    shippingDays: "4-7 business days",
+    shippingDays: "3-5 business days",
     badge: "Top Rated",
     images: [
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
@@ -179,7 +179,7 @@ export const initialStoreProducts = [
       name: "Shenzhen SoundTech Ltd.",
       platform: "AliExpress Direct",
       sku: "ALI-FIT-7718",
-      warehouse: "Shenzhen, CN"
+      warehouse: "Chennai Port Line"
     }
   },
   {
@@ -187,14 +187,14 @@ export const initialStoreProducts = [
     title: "HydroFlow Smart UV-C Self-Cleaning Bottle",
     tagline: "Sterilizes Water & Bottle Interior Every 2 Hours with UV-C Light",
     category: "Lifestyle",
-    price: 44.99,
-    compareAtPrice: 69.99,
-    supplierCost: 14.80,
-    shippingCost: 3.90,
+    price: 2499,
+    compareAtPrice: 3999,
+    supplierCost: 999,
+    shippingCost: 149,
     rating: 4.8,
     reviewsCount: 175,
     stock: 142,
-    shippingDays: "4-8 business days",
+    shippingDays: "3-6 business days",
     badge: "Eco-Friendly",
     images: [
       "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80",
@@ -202,7 +202,7 @@ export const initialStoreProducts = [
     ],
     variants: [
       { name: "Color", options: ["Arctic White", "Matte Black", "Ocean Teal"] },
-      { name: "Size", options: ["17 oz / 500ml", "25 oz / 750ml"] }
+      { name: "Size", options: ["500ml", "750ml"] }
     ],
     description: "Built-in 280nm UV-C LED in the cap destroys 99.99% of bacteria and bio-contaminants at the press of a button. Double-wall vacuum insulation keeps drinks cold for 24h or hot for 12h.",
     features: [
@@ -215,7 +215,7 @@ export const initialStoreProducts = [
       name: "Ningbo ThermalWare Inc.",
       platform: "CJ Dropshipping",
       sku: "CJ-BTL-332",
-      warehouse: "Ningbo, CN"
+      warehouse: "Bengaluru Hub"
     }
   }
 ];
@@ -225,12 +225,12 @@ export const initialSourcingCatalog = [
     id: "source-1",
     title: "MagCharge 3-in-1 Foldable Travel Station",
     category: "Electronics",
-    supplierCost: 13.50,
-    suggestedRetail: 44.99,
-    shippingCost: 3.10,
+    supplierCost: 899,
+    suggestedRetail: 2499,
+    shippingCost: 149,
     supplierName: "Shenzhen QiPower Tech",
     platform: "CJ Dropshipping",
-    shippingTime: "5-9 days",
+    shippingTime: "4-7 days",
     supplierRating: 4.9,
     fulfillmentRate: "99.4%",
     stockAvailable: 2400,
@@ -243,12 +243,12 @@ export const initialSourcingCatalog = [
     id: "source-2",
     title: "ErgoRest Memory Foam Seat Cushion",
     category: "Smart Home",
-    supplierCost: 8.90,
-    suggestedRetail: 29.99,
-    shippingCost: 4.50,
+    supplierCost: 599,
+    suggestedRetail: 1799,
+    shippingCost: 199,
     supplierName: "Hangzhou Comfort Home",
     platform: "AliExpress Direct",
-    shippingTime: "6-10 days",
+    shippingTime: "5-8 days",
     supplierRating: 4.8,
     fulfillmentRate: "98.7%",
     stockAvailable: 1850,
@@ -261,9 +261,9 @@ export const initialSourcingCatalog = [
     id: "source-3",
     title: "AuraGlow Sunset Projection Lamp",
     category: "Smart Home",
-    supplierCost: 6.20,
-    suggestedRetail: 24.99,
-    shippingCost: 2.80,
+    supplierCost: 399,
+    suggestedRetail: 1299,
+    shippingCost: 149,
     supplierName: "Guangzhou Lumen Illumination",
     platform: "Spocket US",
     shippingTime: "3-5 days",
@@ -279,12 +279,12 @@ export const initialSourcingCatalog = [
     id: "source-4",
     title: "PulseWave Deep Tissue Mini Massage Gun",
     category: "Lifestyle",
-    supplierCost: 17.80,
-    suggestedRetail: 59.99,
-    shippingCost: 4.20,
+    supplierCost: 1299,
+    suggestedRetail: 3999,
+    shippingCost: 199,
     supplierName: "Shenzhen SoundTech Ltd.",
     platform: "CJ Dropshipping",
-    shippingTime: "4-8 days",
+    shippingTime: "4-7 days",
     supplierRating: 4.9,
     fulfillmentRate: "99.1%",
     stockAvailable: 950,
@@ -297,12 +297,12 @@ export const initialSourcingCatalog = [
     id: "source-5",
     title: "AquaMist Ultrasonic Flame Essential Oil Diffuser",
     category: "Smart Home",
-    supplierCost: 11.40,
-    suggestedRetail: 39.99,
-    shippingCost: 3.60,
+    supplierCost: 799,
+    suggestedRetail: 2199,
+    shippingCost: 149,
     supplierName: "Yiwu Aroma Living",
     platform: "AliExpress Direct",
-    shippingTime: "5-9 days",
+    shippingTime: "4-8 days",
     supplierRating: 4.8,
     fulfillmentRate: "98.2%",
     stockAvailable: 1420,
@@ -319,7 +319,7 @@ export const initialOrders = [
     customer: {
       name: "Marcus Vance",
       email: "marcus.v@example.com",
-      address: "742 Evergreen Terrace, Springfield, OR, 97477, USA"
+      address: "B-402 Prestige Palms, Indiranagar, Bengaluru, KA, 560038, India"
     },
     items: [
       {
@@ -327,26 +327,26 @@ export const initialOrders = [
         title: "Aura SoundPulse Pro ANC Headphones",
         variant: "Matte Black",
         quantity: 1,
-        retailPrice: 89.99,
-        supplierCost: 29.50,
+        retailPrice: 4999,
+        supplierCost: 1999,
         supplierSku: "CJ-AUDIO-9921",
         image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80"
       }
     ],
-    totalAmount: 89.99,
-    totalCost: 29.50,
-    grossProfit: 60.49,
-    status: "Pending Sourcing", // Options: "Pending Sourcing", "Awaiting Dispatch", "In Transit", "Delivered"
-    shippingCarrier: "YunExpress / USPS Last-Mile",
+    totalAmount: 4999,
+    totalCost: 1999,
+    grossProfit: 3000,
+    status: "Pending Sourcing",
+    shippingCarrier: "BlueDart / Delhivery Surface",
     trackingNumber: null,
     placedAt: "2026-11-16T09:24:00Z",
     supplierPlatform: "CJ Dropshipping",
     autoFulfillEligible: true,
     trackingSteps: [
-      { stage: "Order Placed", completed: true, timestamp: "Nov 16, 09:24 AM", desc: "Customer order confirmed and payment authorized." },
+      { stage: "Order Placed", completed: true, timestamp: "Nov 16, 09:24 AM", desc: "Customer order confirmed and UPI/Card payment authorized." },
       { stage: "Supplier Sourced", completed: false, timestamp: "Pending", desc: "Awaiting automatic PO dispatch to CJ Dropshipping warehouse." },
-      { stage: "Carrier Dispatched", completed: false, timestamp: "Pending", desc: "International air cargo manifest assigned." },
-      { stage: "In Transit", completed: false, timestamp: "Pending", desc: "Customs cleared & transfer to regional postal hub." },
+      { stage: "Carrier Dispatched", completed: false, timestamp: "Pending", desc: "Line-haul transit manifest assigned." },
+      { stage: "In Transit", completed: false, timestamp: "Pending", desc: "Regional hub sorting & clearance." },
       { stage: "Delivered", completed: false, timestamp: "Pending", desc: "Package out for delivery to recipient address." }
     ]
   },
@@ -355,7 +355,7 @@ export const initialOrders = [
     customer: {
       name: "Sophia Martinez",
       email: "sophia.m@example.com",
-      address: "1280 Beacon St, Brookline, MA, 02446, USA"
+      address: "12-A Silver Beach Estate, Juhu, Mumbai, MH, 400049, India"
     },
     items: [
       {
@@ -363,26 +363,26 @@ export const initialOrders = [
         title: "VortexFlow Ceramic Smart Heating Mug",
         variant: "Ceramic White",
         quantity: 1,
-        retailPrice: 64.99,
-        supplierCost: 21.00,
+        retailPrice: 3499,
+        supplierCost: 1499,
         supplierSku: "SPK-MUG-108",
         image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80"
       }
     ],
-    totalAmount: 64.99,
-    totalCost: 21.00,
-    grossProfit: 43.99,
+    totalAmount: 3499,
+    totalCost: 1499,
+    grossProfit: 2000,
     status: "In Transit",
-    shippingCarrier: "USPS Priority",
-    trackingNumber: "9400111899562548901234",
+    shippingCarrier: "Delhivery Express",
+    trackingNumber: "DLV994821039IN",
     placedAt: "2026-11-15T14:10:00Z",
     supplierPlatform: "Spocket US",
     autoFulfillEligible: false,
     trackingSteps: [
       { stage: "Order Placed", completed: true, timestamp: "Nov 15, 02:10 PM", desc: "Order confirmed." },
-      { stage: "Supplier Sourced", completed: true, timestamp: "Nov 15, 03:45 PM", desc: "US Domestic Warehouse prepared package." },
-      { stage: "Carrier Dispatched", completed: true, timestamp: "Nov 15, 06:12 PM", desc: "Scanned at Los Angeles Distribution Center." },
-      { stage: "In Transit", completed: true, timestamp: "Nov 16, 08:30 AM", desc: "Departed Chicago sorting facility. On schedule." },
+      { stage: "Supplier Sourced", completed: true, timestamp: "Nov 15, 03:45 PM", desc: "Domestic Warehouse prepared package." },
+      { stage: "Carrier Dispatched", completed: true, timestamp: "Nov 15, 06:12 PM", desc: "Scanned at Mumbai Central Hub." },
+      { stage: "In Transit", completed: true, timestamp: "Nov 16, 08:30 AM", desc: "Departed regional sorting facility. On schedule." },
       { stage: "Delivered", completed: false, timestamp: "Expected Nov 18", desc: "Estimated delivery by 5:00 PM." }
     ]
   },
@@ -391,7 +391,7 @@ export const initialOrders = [
     customer: {
       name: "David Chen",
       email: "david.c@example.com",
-      address: "450 7th Ave, New York, NY, 10123, USA"
+      address: "Flat 502, DLF Phase 5, Gurugram, HR, 122002, India"
     },
     items: [
       {
@@ -399,27 +399,27 @@ export const initialOrders = [
         title: "Lumino Horizon Ambient RGB Lightbar",
         variant: "Desk Stand",
         quantity: 2,
-        retailPrice: 99.98,
-        supplierCost: 32.40,
+        retailPrice: 5598,
+        supplierCost: 2198,
         supplierSku: "ALI-RGB-4029",
         image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
       }
     ],
-    totalAmount: 99.98,
-    totalCost: 32.40,
-    grossProfit: 67.58,
+    totalAmount: 5598,
+    totalCost: 2198,
+    grossProfit: 3400,
     status: "Delivered",
-    shippingCarrier: "YunExpress Line-Haul",
-    trackingNumber: "YT26310984719283",
+    shippingCarrier: "BlueDart Express",
+    trackingNumber: "BLU882910482IN",
     placedAt: "2026-11-11T11:05:00Z",
     supplierPlatform: "AliExpress Direct",
     autoFulfillEligible: false,
     trackingSteps: [
       { stage: "Order Placed", completed: true, timestamp: "Nov 11, 11:05 AM", desc: "Order confirmed." },
-      { stage: "Supplier Sourced", completed: true, timestamp: "Nov 11, 01:20 PM", desc: "Yiwu supplier fulfilled PO." },
-      { stage: "Carrier Dispatched", completed: true, timestamp: "Nov 12, 09:15 AM", desc: "Air cargo flight landed at JFK airport." },
+      { stage: "Supplier Sourced", completed: true, timestamp: "Nov 11, 01:20 PM", desc: "Supplier fulfilled PO." },
+      { stage: "Carrier Dispatched", completed: true, timestamp: "Nov 12, 09:15 AM", desc: "Air cargo flight landed at IGI Airport." },
       { stage: "In Transit", completed: true, timestamp: "Nov 13, 04:30 PM", desc: "Customs cleared, handoff to local courier." },
-      { stage: "Delivered", completed: true, timestamp: "Nov 15, 01:45 PM", desc: "Delivered to front door / mailroom." }
+      { stage: "Delivered", completed: true, timestamp: "Nov 15, 01:45 PM", desc: "Delivered to security desk / doorstep." }
     ]
   }
 ];
@@ -429,40 +429,39 @@ export const initialSuppliers = [
     id: "sup-1",
     name: "CJ Dropshipping Global",
     platform: "CJ Dropshipping",
-    location: "Shenzhen & Yiwu, CN / New Jersey, US",
+    location: "Shenzhen, Yiwu & Bengaluru Hub",
     rating: 4.9,
     ordersProcessed: 4892,
     avgFulfillmentHours: 18,
     disputeRate: "0.8%",
     status: "Connected & Verified",
-    balance: "$2,450.00",
+    balance: "₹1,85,000",
     specialty: "Consumer Electronics, Gadgets & Fast Tracked Freight"
   },
   {
     id: "sup-2",
-    name: "Spocket US Domestic Direct",
+    name: "Spocket Direct",
     platform: "Spocket",
-    location: "California & Texas, USA",
+    location: "Mumbai & Delhi Warehouses",
     rating: 4.95,
     ordersProcessed: 1230,
     avgFulfillmentHours: 8,
     disputeRate: "0.3%",
     status: "Connected & Verified",
-    balance: "$1,820.50",
-    specialty: "High-Margin US Fast Shipping (3-5 days delivery)"
+    balance: "₹1,40,500",
+    specialty: "High-Margin Fast Shipping (2-4 days delivery)"
   },
   {
     id: "sup-3",
     name: "AliExpress Premier Direct",
     platform: "AliExpress",
-    location: "Hangzhou & Shenzhen, CN",
+    location: "Hangzhou Direct Import Line",
     rating: 4.7,
     ordersProcessed: 7810,
     avgFulfillmentHours: 36,
     disputeRate: "1.4%",
     status: "Connected",
-    balance: "$890.00",
+    balance: "₹72,000",
     specialty: "Deep Wholesale Pricing & Vast Global Catalog"
   }
 ];
-

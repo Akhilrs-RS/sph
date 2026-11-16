@@ -26,7 +26,7 @@ export default function SourcingView() {
   );
 
   const calculateRetailPrice = (item) => {
-    return parseFloat(((item.supplierCost * markupMultiplier) + item.shippingCost).toFixed(2));
+    return Math.round((item.supplierCost * markupMultiplier) + item.shippingCost);
   };
 
   const handleConfirmImport = () => {
@@ -119,15 +119,15 @@ export default function SourcingView() {
                   <div className="grid grid-cols-3 gap-2 mt-3 p-3 bg-slate-50 rounded-xl text-center">
                     <div>
                       <span className="text-[10px] text-slate-600 uppercase font-bold block">Wholesale</span>
-                      <span className="text-xs font-mono font-bold text-slate-900">${item.supplierCost.toFixed(2)}</span>
+                      <span className="text-xs font-mono font-bold text-slate-900">₹{item.supplierCost.toLocaleString('en-IN')}</span>
                     </div>
                     <div>
                       <span className="text-[10px] text-slate-600 uppercase font-bold block">Shipping</span>
-                      <span className="text-xs font-mono font-bold text-slate-900">${item.shippingCost.toFixed(2)}</span>
+                      <span className="text-xs font-mono font-bold text-slate-900">₹{item.shippingCost.toLocaleString('en-IN')}</span>
                     </div>
                     <div>
                       <span className="text-[10px] text-emerald-700 uppercase font-bold block">Est. Profit</span>
-                      <span className="text-xs font-mono font-black text-emerald-600">+${estProfit.toFixed(2)}</span>
+                      <span className="text-xs font-mono font-black text-emerald-600">+₹{Math.round(estProfit).toLocaleString('en-IN')}</span>
                     </div>
                   </div>
                 </div>
@@ -135,8 +135,8 @@ export default function SourcingView() {
                 {/* Import Action */}
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-slate-600 uppercase font-bold block">Retail (2.4x)</span>
-                    <span className="text-sm font-black text-blue-600">${calculatedPrice.toFixed(2)}</span>
+                    <span className="text-[10px] text-slate-600 uppercase font-bold block">Retail (2.2x)</span>
+                    <span className="text-sm font-black text-blue-600">₹{calculatedPrice.toLocaleString('en-IN')}</span>
                   </div>
 
                   <button
@@ -185,11 +185,11 @@ export default function SourcingView() {
             <div className="my-5 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3 text-xs">
               <div className="flex justify-between">
                 <span className="text-slate-600">Supplier Wholesale Cost:</span>
-                <span className="font-mono font-bold text-slate-900">${selectedItemToImport.supplierCost.toFixed(2)}</span>
+                <span className="font-mono font-bold text-slate-900">₹{selectedItemToImport.supplierCost.toLocaleString('en-IN')}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-600">Freight & Packaging:</span>
-                <span className="font-mono font-bold text-slate-900">${selectedItemToImport.shippingCost.toFixed(2)}</span>
+                <span className="font-mono font-bold text-slate-900">₹{selectedItemToImport.shippingCost.toLocaleString('en-IN')}</span>
               </div>
 
               {/* Multiplier Slider */}
@@ -209,7 +209,7 @@ export default function SourcingView() {
                 />
                 <div className="flex justify-between text-[10px] text-slate-600">
                   <span>1.5x (Low Margin)</span>
-                  <span>2.4x (Standard)</span>
+                  <span>2.2x (Standard)</span>
                   <span>4.0x (High Ticket)</span>
                 </div>
               </div>
@@ -217,7 +217,7 @@ export default function SourcingView() {
               <div className="pt-2 border-t border-slate-200 flex justify-between items-baseline text-sm">
                 <span className="font-black text-slate-900">Calculated Store Retail Price:</span>
                 <span className="text-lg font-black text-blue-600">
-                  ${calculateRetailPrice(selectedItemToImport).toFixed(2)}
+                  ₹{calculateRetailPrice(selectedItemToImport).toLocaleString('en-IN')}
                 </span>
               </div>
             </div>

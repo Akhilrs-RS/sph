@@ -123,16 +123,16 @@ export default function ProductDetailModal() {
             {/* Pricing Section */}
             <div className="mt-4 flex items-baseline gap-3">
               <span className="text-2xl sm:text-3xl font-black text-slate-900">
-                ${selectedProduct.price.toFixed(2)}
+                ₹{selectedProduct.price.toLocaleString('en-IN')}
               </span>
               {selectedProduct.compareAtPrice && (
                 <span className="text-base text-slate-600 line-through">
-                  ${selectedProduct.compareAtPrice.toFixed(2)}
+                  ₹{selectedProduct.compareAtPrice.toLocaleString('en-IN')}
                 </span>
               )}
               {selectedProduct.compareAtPrice && (
                 <span className="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
-                  Save ${(selectedProduct.compareAtPrice - selectedProduct.price).toFixed(2)}
+                  Save ₹{(selectedProduct.compareAtPrice - selectedProduct.price).toLocaleString('en-IN')}
                 </span>
               )}
             </div>

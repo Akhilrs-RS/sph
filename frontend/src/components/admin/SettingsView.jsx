@@ -55,17 +55,17 @@ export default function SettingsView() {
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Customer Priority Express Shipping Surcharge ($)
+                Customer Priority Express Shipping Surcharge (₹)
               </label>
               <input
                 type="number"
-                step="0.5"
+                step="10"
                 value={localSettings.expressShippingRate}
                 onChange={(e) => setLocalSettings({ ...localSettings, expressShippingRate: parseFloat(e.target.value) || 0 })}
                 className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-900 focus:bg-white focus:border-blue-500 font-mono w-28"
               />
               <p className="text-[11px] text-slate-500 mt-1">
-                Standard tracked ePacket is free; priority air freight adds this charge.
+                Standard surface tracked delivery is free; priority air freight adds this charge.
               </p>
             </div>
           </div>

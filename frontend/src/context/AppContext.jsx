@@ -9,32 +9,32 @@ export function AppProvider({ children }) {
   const [adminTab, setAdminTab] = useState('dashboard'); // 'dashboard' | 'sourcing' | 'orders' | 'suppliers' | 'calculator' | 'settings'
   const [storeTab, setStoreTab] = useState('home'); // 'home' | 'catalog' | 'track'
 
-  // Catalog & Inventory State
+  // Catalog & Inventory State (using v2 keys for clean INR initialization)
   const [storefrontProducts, setStorefrontProducts] = useState(() => {
-    const saved = localStorage.getItem('aura_store_products');
+    const saved = localStorage.getItem('aura_inr_store_products_v2');
     return saved ? JSON.parse(saved) : initialStoreProducts;
   });
 
   const [sourcingCatalog, setSourcingCatalog] = useState(() => {
-    const saved = localStorage.getItem('aura_sourcing_catalog');
+    const saved = localStorage.getItem('aura_inr_sourcing_catalog_v2');
     return saved ? JSON.parse(saved) : initialSourcingCatalog;
   });
 
   // Orders State
   const [orders, setOrders] = useState(() => {
-    const saved = localStorage.getItem('aura_orders');
+    const saved = localStorage.getItem('aura_inr_orders_v2');
     return saved ? JSON.parse(saved) : initialOrders;
   });
 
   // Suppliers State
   const [suppliers, setSuppliers] = useState(() => {
-    const saved = localStorage.getItem('aura_suppliers');
+    const saved = localStorage.getItem('aura_inr_suppliers_v2');
     return saved ? JSON.parse(saved) : initialSuppliers;
   });
 
   // Storefront Shopping Cart State
   const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('aura_cart');
+    const saved = localStorage.getItem('aura_inr_cart_v2');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -47,13 +47,13 @@ export function AppProvider({ children }) {
 
   // Automation / Markup Settings
   const [settings, setSettings] = useState({
-    defaultMarkup: 2.4, // 240% multiplier
+    defaultMarkup: 2.2, // 220% multiplier
     autoFulfillEnabled: true,
-    currencySymbol: '$',
-    currencyCode: 'USD',
+    currencySymbol: '₹',
+    currencyCode: 'INR',
     lowStockThreshold: 15,
-    expressShippingRate: 9.99,
-    standardShippingRate: 0.00
+    expressShippingRate: 199,
+    standardShippingRate: 0
   });
 
   // Toast Notification System
@@ -68,20 +68,26 @@ export function AppProvider({ children }) {
 
   // Sync state to LocalStorage
   useEffect(() => {
-    localStorage.setItem('aura_store_products', JSON.stringify(storefrontProducts));
+    localStorage.setItem('aura_inr_store_products_v2', JSON.stringify(storefrontProducts));
   }, [storefrontProducts]);
 
   useEffect(() => {
-    localStorage.setItem('aura_sourcing_catalog', JSON.stringify(sourcingCatalog));
+    localStorage.setItem('aura_inr_sourcing_catalog_v2', JSON.stringify(sourcingCatalog));
   }, [sourcingCatalog]);
 
   useEffect(() => {
-    localStorage.setItem('aura_orders', JSON.stringify(orders));
+    localStorage.setItem('aura_inr_orders_v2', JSON.stringify(orders));
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem('aura_cart', JSON.stringify(cart));
+    localStorage.setItem('aura_inr_cart_v2', JSON.stringify(cart));
   }, [cart]);
+
+  // Helper currency formatter
+  const formatINR = (val) => {
+    const num = typeof val === 'number' ? val : parseFloat(val) || 0;
+    return `₹${Math.round(num).toLocaleString('en-IN')}`;
+  };
 
   // Cart Actions
   const addToCart = (product, variantOptions = {}, quantity = 1) => {
@@ -141,7 +147,7 @@ export function AppProvider({ children }) {
       variant: Object.values(item.variantOptions).join(' / ') || 'Default',
       quantity: item.quantity,
       retailPrice: item.product.price,
-      supplierCost: item.product.supplierCost || (item.product.price * 0.35),
+      supplierCost: item.product.supplierCost || (item.product.price * 0.4),
       supplierSku: item.product.supplier?.sku || `SKU-${item.product.id}`,
       image: item.product.images?.[0] || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80'
     }));
@@ -153,20 +159,20 @@ export function AppProvider({ children }) {
       id: orderId,
       customer: customerDetails,
       items: orderItems,
-      totalAmount: parseFloat(finalAmount.toFixed(2)),
-      totalCost: parseFloat(totalCost.toFixed(2)),
-      grossProfit: parseFloat(grossProfit.toFixed(2)),
+      totalAmount: Math.round(finalAmount),
+      totalCost: Math.round(totalCost),
+      grossProfit: Math.round(grossProfit),
       status: 'Pending Sourcing',
-      shippingCarrier: shippingOption === 'express' ? 'Priority Air Freight (YunExpress)' : 'Standard ePacket Tracking',
+      shippingCarrier: shippingOption === 'express' ? 'Priority Air Freight (BlueDart / Delhivery)' : 'Standard Surface Tracked Delivery',
       trackingNumber: null,
       placedAt: new Date().toISOString(),
       supplierPlatform: 'CJ Dropshipping',
       autoFulfillEligible: true,
       trackingSteps: [
-        { stage: 'Order Placed', completed: true, timestamp: 'Just now', desc: 'Customer order verified & payment authorized.' },
+        { stage: 'Order Placed', completed: true, timestamp: 'Just now', desc: 'Customer order verified & UPI/Card payment authorized.' },
         { stage: 'Supplier Sourced', completed: false, timestamp: 'Pending', desc: 'Automatic dropship PO queuing with vendor warehouse.' },
-        { stage: 'Carrier Dispatched', completed: false, timestamp: 'Pending', desc: 'Assigned to international cargo flight.' },
-        { stage: 'In Transit', completed: false, timestamp: 'Pending', desc: 'Customs cleared & regional sorting.' },
+        { stage: 'Carrier Dispatched', completed: false, timestamp: 'Pending', desc: 'Assigned to domestic line-haul transit.' },
+        { stage: 'In Transit', completed: false, timestamp: 'Pending', desc: 'Regional hub arrival & sorting.' },
         { stage: 'Delivered', completed: false, timestamp: 'Pending', desc: 'Final mile delivery to doorstep.' }
       ]
     };
@@ -192,7 +198,7 @@ export function AppProvider({ children }) {
 
   // Dropship Admin: 1-Click Import from Sourcing Hub
   const importToStorefront = (sourcingItem, customRetailPrice) => {
-    const finalPrice = customRetailPrice || parseFloat((sourcingItem.supplierCost * settings.defaultMarkup + sourcingItem.shippingCost).toFixed(2));
+    const finalPrice = customRetailPrice || Math.round(sourcingItem.supplierCost * settings.defaultMarkup + sourcingItem.shippingCost);
 
     const newStoreProduct = {
       id: `prod-${Date.now()}`,
@@ -200,7 +206,7 @@ export function AppProvider({ children }) {
       tagline: sourcingItem.description,
       category: sourcingItem.category,
       price: finalPrice,
-      compareAtPrice: parseFloat((finalPrice * 1.45).toFixed(2)),
+      compareAtPrice: Math.round(finalPrice * 1.5),
       supplierCost: sourcingItem.supplierCost,
       shippingCost: sourcingItem.shippingCost,
       rating: sourcingItem.supplierRating,
@@ -218,20 +224,20 @@ export function AppProvider({ children }) {
         name: sourcingItem.supplierName,
         platform: sourcingItem.platform,
         sku: `IMP-${Math.floor(1000 + Math.random() * 9000)}`,
-        warehouse: "Shenzhen / Domestic Cross-dock"
+        warehouse: "Bengaluru / Domestic Cross-dock"
       }
     };
 
     setStorefrontProducts(prev => [newStoreProduct, ...prev]);
     // remove or mark from sourcing catalog
     setSourcingCatalog(prev => prev.filter(item => item.id !== sourcingItem.id));
-    showToast(`Imported "${sourcingItem.title}" to Storefront at $${finalPrice}!`, 'success');
+    showToast(`Imported "${sourcingItem.title}" to Storefront at ₹${finalPrice.toLocaleString('en-IN')}!`, 'success');
   };
 
   // Dropship Admin: Auto-Fulfill with Supplier
   const fulfillOrder = (orderId) => {
-    const carrierPrefix = ['YNX', 'CJP', 'USPS', 'DHL'][Math.floor(Math.random() * 4)];
-    const generatedTracking = `${carrierPrefix}${Math.floor(100000000 + Math.random() * 900000000)}`;
+    const carrierPrefix = ['BLU', 'DLV', 'EXPR', 'SHP'][Math.floor(Math.random() * 4)];
+    const generatedTracking = `${carrierPrefix}${Math.floor(100000000 + Math.random() * 900000000)}IN`;
 
     setOrders(prev =>
       prev.map(ord => {
@@ -244,9 +250,9 @@ export function AppProvider({ children }) {
             trackingSteps: [
               { stage: 'Order Placed', completed: true, timestamp: 'Completed', desc: 'Order placed & payment authorized.' },
               { stage: 'Supplier Sourced', completed: true, timestamp: 'Just now', desc: 'Automated PO sent to supplier. Stock reserved.' },
-              { stage: 'Carrier Dispatched', completed: true, timestamp: 'In progress', desc: `Handed to ${ord.shippingCarrier}. Airway bill #${generatedTracking}.` },
-              { stage: 'In Transit', completed: true, timestamp: 'Active', desc: 'En route to destination country airport hub.' },
-              { stage: 'Delivered', completed: false, timestamp: 'Est. 4-6 days', desc: 'Out for final doorstep delivery.' }
+              { stage: 'Carrier Dispatched', completed: true, timestamp: 'In progress', desc: `Handed to ${ord.shippingCarrier}. Docket #${generatedTracking}.` },
+              { stage: 'In Transit', completed: true, timestamp: 'Active', desc: 'En route to destination city sorting hub.' },
+              { stage: 'Delivered', completed: false, timestamp: 'Est. 2-4 days', desc: 'Out for final doorstep delivery.' }
             ]
           };
         }
@@ -258,8 +264,8 @@ export function AppProvider({ children }) {
     setSuppliers(prev =>
       prev.map(s => {
         if (s.name.includes('CJ') || s.name.includes('Global')) {
-          const current = parseFloat(s.balance.replace(/[^0-9.-]+/g, '')) || 2000;
-          return { ...s, balance: `$${(current - 29.50).toFixed(2)}` };
+          const current = parseInt(s.balance.replace(/[^0-9]/g, '')) || 185000;
+          return { ...s, balance: `₹${(current - 1999).toLocaleString('en-IN')}` };
         }
         return s;
       })
@@ -320,7 +326,8 @@ export function AppProvider({ children }) {
         placeOrder,
         importToStorefront,
         fulfillOrder,
-        metrics
+        metrics,
+        formatINR
       }}
     >
       {children}
@@ -335,4 +342,3 @@ export function useApp() {
   }
   return context;
 }
-

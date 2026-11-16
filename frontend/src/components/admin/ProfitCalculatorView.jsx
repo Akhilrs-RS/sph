@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Calculator, DollarSign, TrendingUp, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { Calculator, TrendingUp, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function ProfitCalculatorView() {
-  const [productCost, setProductCost] = useState(19.50);
-  const [shippingCost, setShippingCost] = useState(4.20);
-  const [retailPrice, setRetailPrice] = useState(59.99);
-  const [adSpendCAC, setAdSpendCAC] = useState(14.00);
-  const [paymentFeePercent, setPaymentFeePercent] = useState(2.9);
-  const [paymentFixedFee, setPaymentFixedFee] = useState(0.30);
+  const [productCost, setProductCost] = useState(1299);
+  const [shippingCost, setShippingCost] = useState(199);
+  const [retailPrice, setRetailPrice] = useState(3499);
+  const [adSpendCAC, setAdSpendCAC] = useState(800);
+  const [paymentFeePercent, setPaymentFeePercent] = useState(2.0);
+  const [paymentFixedFee, setPaymentFixedFee] = useState(3.0);
 
   // Computations
   const gatewayFee = (retailPrice * (paymentFeePercent / 100)) + paymentFixedFee;
@@ -29,10 +29,10 @@ export default function ProfitCalculatorView() {
       {/* Title */}
       <div>
         <h1 className="text-2xl font-black text-slate-900 tracking-tight">
-          Dropshipping Unit Economics & Margin Simulator
+          Dropshipping Unit Economics & Margin Simulator (INR)
         </h1>
         <p className="text-xs text-slate-500 mt-1">
-          Calculate true net profitability factoring in wholesale product costs, shipping freight, ad spend (CAC), and payment merchant fees.
+          Calculate true net profitability factoring in wholesale product costs, shipping freight, ad spend (CAC), and payment merchant fees in Indian Rupees (₹).
         </p>
       </div>
 
@@ -47,11 +47,11 @@ export default function ProfitCalculatorView() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Wholesale Product Cost ($)
+                Wholesale Product Cost (₹)
               </label>
               <input
                 type="number"
-                step="0.1"
+                step="50"
                 value={productCost}
                 onChange={(e) => setProductCost(parseFloat(e.target.value) || 0)}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono font-bold text-slate-900 focus:bg-white focus:border-blue-500 focus:outline-none"
@@ -61,27 +61,27 @@ export default function ProfitCalculatorView() {
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Freight / Shipping Cost ($)
+                Freight / Shipping Cost (₹)
               </label>
               <input
                 type="number"
-                step="0.1"
+                step="10"
                 value={shippingCost}
                 onChange={(e) => setShippingCost(parseFloat(e.target.value) || 0)}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono font-bold text-slate-900 focus:bg-white focus:border-blue-500 focus:outline-none"
               />
-              <span className="text-[10px] text-slate-600">Air line-haul tracking fee</span>
+              <span className="text-[10px] text-slate-600">Domestic line-haul tracking fee</span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Target Customer Selling Price ($)
+                Target Customer Selling Price (₹)
               </label>
               <input
                 type="number"
-                step="0.5"
+                step="50"
                 value={retailPrice}
                 onChange={(e) => setRetailPrice(parseFloat(e.target.value) || 0)}
                 className="w-full bg-blue-50/60 border border-blue-200 rounded-xl px-3 py-2 text-xs font-mono font-black text-blue-700 focus:bg-white focus:border-blue-500 focus:outline-none"
@@ -91,22 +91,22 @@ export default function ProfitCalculatorView() {
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Estimated Ad Spend / CAC ($)
+                Estimated Ad Spend / CAC (₹)
               </label>
               <input
                 type="number"
-                step="0.5"
+                step="50"
                 value={adSpendCAC}
                 onChange={(e) => setAdSpendCAC(parseFloat(e.target.value) || 0)}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono font-bold text-slate-900 focus:bg-white focus:border-blue-500 focus:outline-none"
               />
-              <span className="text-[10px] text-slate-600">Meta / TikTok ad cost per purchase</span>
+              <span className="text-[10px] text-slate-600">Meta / Google ad cost per purchase</span>
             </div>
           </div>
 
           <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <span>Payment Processing Fee (Stripe/PayPal):</span>
-            <span className="font-mono font-bold text-slate-800">${gatewayFee.toFixed(2)} (2.9% + $0.30)</span>
+            <span>Payment Processing Fee (Razorpay/Cashfree/UPI):</span>
+            <span className="font-mono font-bold text-slate-800">₹{gatewayFee.toFixed(2)} (2.0% + ₹3.00)</span>
           </div>
         </div>
 
@@ -120,7 +120,7 @@ export default function ProfitCalculatorView() {
 
             <div className="mt-4 flex items-baseline gap-2">
               <span className={`text-4xl font-black font-mono ${netProfit >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                ${netProfit.toFixed(2)}
+                ₹{Math.round(netProfit).toLocaleString('en-IN')}
               </span>
               <span className="text-xs text-slate-400">/ sale</span>
             </div>
@@ -138,7 +138,7 @@ export default function ProfitCalculatorView() {
               </div>
               <div className="flex justify-between">
                 <span>Total Unit Cost (COGS + Ad):</span>
-                <span className="font-mono font-semibold text-slate-400">${totalCostPerUnit.toFixed(2)}</span>
+                <span className="font-mono font-semibold text-slate-400">₹{Math.round(totalCostPerUnit).toLocaleString('en-IN')}</span>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function ProfitCalculatorView() {
                 <div key={proj.units} className="bg-slate-800/40 p-2 rounded-lg border border-slate-700/40">
                   <span className="text-[10px] text-slate-400 block font-bold">{proj.units} orders</span>
                   <span className="text-xs font-mono font-bold text-emerald-400 block mt-0.5">
-                    ${(proj.profit > 0 ? proj.profit : 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                    ₹{(proj.profit > 0 ? Math.round(proj.profit) : 0).toLocaleString('en-IN')}
                   </span>
                 </div>
               ))}
@@ -164,4 +164,3 @@ export default function ProfitCalculatorView() {
     </div>
   );
 }
-

@@ -18,7 +18,7 @@ export default function StoreNavbar() {
     <header className="bg-white border-b border-slate-200 sticky top-8 z-40 shadow-sm transition">
       {/* Top micro banner */}
       <div className="bg-blue-600 text-white text-[11px] font-medium py-1 px-4 text-center tracking-wide">
-        🚀 Direct Factory Sourcing: Free Tracked Shipping on Orders Over $75 | 30-Day Easy Returns
+        🚀 Direct Factory Sourcing: Free Tracked Shipping on Orders Over ₹1,999 | 30-Day Easy Returns
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,7 +106,7 @@ export default function StoreNavbar() {
                 )}
               </div>
               <span className="hidden lg:inline text-xs font-semibold">
-                ${cartSubtotal.toFixed(2)}
+                ₹{cartSubtotal.toLocaleString('en-IN')}
               </span>
             </button>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import ProductCard from './ProductCard';
-import { SlidersHorizontal, Sparkles, Filter } from 'lucide-react';
+import { SlidersHorizontal, Filter, X } from 'lucide-react';
 
 export default function StoreCatalogView() {
   const {
@@ -13,7 +13,6 @@ export default function StoreCatalogView() {
   } = useApp();
 
   const [sortBy, setSortBy] = useState('featured'); // 'featured' | 'price-low' | 'price-high' | 'rating'
-  const [maxPrice, setMaxPrice] = useState(150);
 
   // Extract unique categories
   const categories = ['All', ...new Set(storefrontProducts.map(p => p.category))];
@@ -26,8 +25,7 @@ export default function StoreCatalogView() {
         p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (p.tagline && p.tagline.toLowerCase().includes(searchQuery.toLowerCase()));
-      const matchPrice = p.price <= maxPrice;
-      return matchCat && matchSearch && matchPrice;
+      return matchCat && matchSearch;
     })
     .sort((a, b) => {
       if (sortBy === 'price-low') return a.price - b.price;
@@ -38,48 +36,48 @@ export default function StoreCatalogView() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
-      {/* Header & Category Tabs */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      {/* Title & Sorting Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-            Curated Dropshipping Catalog
+          <h2 className="text-2xl font-black text-slate-950 tracking-tight">
+            Curated Catalog
           </h2>
-          <p className="text-xs text-slate-500 mt-1">
-            Showing {filteredProducts.length} high-margin trending products with direct supplier tracking
+          <p className="text-xs text-slate-500 mt-0.5">
+            {filteredProducts.length} certified direct-from-factory essentials
           </p>
         </div>
 
-        {/* Sort and Filters Control */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-sm text-xs">
+        {/* Sort selector */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200/80 text-xs transition">
             <SlidersHorizontal className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-slate-500 font-medium">Sort by:</span>
+            <span className="text-slate-500 font-medium">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer"
+              className="bg-transparent font-bold text-slate-900 focus:outline-none cursor-pointer"
             >
-              <option value="featured">Featured / Trending</option>
+              <option value="featured">Featured / Best Sellers</option>
               <option value="price-low">Price: Low to High</option>
               <option value="price-high">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
+              <option value="rating">Highest Customer Rating</option>
             </select>
           </div>
         </div>
       </div>
 
-      {/* Category Filter Chips */}
-      <div className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-none">
+      {/* Category Filter Pills */}
+      <div className="flex items-center gap-2 overflow-x-auto py-3 scrollbar-none">
         {categories.map((cat, idx) => {
           const isSelected = selectedCategory === cat;
           return (
             <button
               key={idx}
               onClick={() => setSelectedCategory(cat)}
-              className={`text-xs font-bold px-4 py-2 rounded-full whitespace-nowrap transition ${
+              className={`text-xs font-semibold px-4 py-1.5 rounded-full whitespace-nowrap transition ${
                 isSelected
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  ? 'bg-slate-950 text-white shadow-2xs font-bold'
+                  : 'bg-slate-100/80 text-slate-600 hover:bg-slate-200/70 hover:text-slate-900'
               }`}
             >
               {cat}
@@ -88,39 +86,40 @@ export default function StoreCatalogView() {
         })}
       </div>
 
-      {/* Active Search Notification */}
+      {/* Active Search Term Pill */}
       {searchQuery && (
-        <div className="mb-4 text-xs text-slate-600 flex items-center justify-between bg-blue-50/70 p-3 rounded-xl border border-blue-100">
-          <span>Filtering by search term: <strong className="text-blue-700">"{searchQuery}"</strong></span>
+        <div className="my-3 inline-flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full text-xs text-slate-700">
+          <span>Results for <strong>"{searchQuery}"</strong></span>
           <button
             onClick={() => setSearchQuery('')}
-            className="text-blue-600 hover:underline font-bold"
+            className="hover:text-slate-950 text-slate-400 p-0.5"
+            title="Clear search"
           >
-            Clear Search
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
 
       {/* Product Grid */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pt-3">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 p-8">
+        <div className="text-center py-20 bg-white rounded-3xl border border-slate-200/70 p-8 max-w-md mx-auto">
           <Filter className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">No products match your filters</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-            Try adjusting your search query or switching categories.
+          <h3 className="text-base font-bold text-slate-900">No items found</h3>
+          <p className="text-xs text-slate-500 mt-1">
+            Try adjusting your search keywords or switching categories.
           </p>
           <button
             onClick={() => {
               setSelectedCategory('All');
               setSearchQuery('');
             }}
-            className="mt-4 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition"
+            className="mt-4 bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-full transition"
           >
             Reset Filters
           </button>
@@ -129,4 +128,3 @@ export default function StoreCatalogView() {
     </div>
   );
 }
-

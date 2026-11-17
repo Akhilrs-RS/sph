@@ -29,7 +29,7 @@ export default function App() {
   const { activeView, adminTab, storeTab, setStoreTab } = useApp();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-800">
+    <div className="min-h-screen flex flex-col bg-[#fcfcfd] font-sans text-slate-900 selection:bg-slate-950 selection:text-white">
       {/* Top Demo & Role Switcher Banner */}
       <TopNavRoleSwitcher />
 
@@ -49,60 +49,60 @@ export default function App() {
           </main>
 
           {/* Storefront Footer */}
-          <footer className="bg-slate-900 text-slate-400 text-xs py-12 border-t border-slate-800">
+          <footer className="bg-white text-slate-500 text-xs py-12 border-t border-slate-100 mt-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-100">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                      <Zap className="w-4 h-4 fill-white" />
+                    <div className="w-6 h-6 rounded-lg bg-slate-950 flex items-center justify-center text-white">
+                      <Zap className="w-3.5 h-3.5 fill-white" />
                     </div>
-                    <span className="font-black text-lg text-white">AuraStore</span>
+                    <span className="font-black text-base text-slate-950 tracking-tight">AURA<span className="text-blue-600">.</span></span>
                   </div>
                   <p className="text-slate-400 leading-relaxed text-xs">
-                    Next-generation direct dropshipping marketplace. We source cutting-edge lifestyle and tech gear directly from verified manufacturing partners.
+                    Next-generation direct-from-factory e-commerce. Curated tech and lifestyle gear shipped via line-haul express air freight.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-white uppercase tracking-wider mb-3 text-xs">Direct Shopping</h4>
+                  <h4 className="font-bold text-slate-900 uppercase tracking-wider mb-3 text-xs">Curated Collections</h4>
                   <ul className="space-y-2">
                     <li>
-                      <button onClick={() => setStoreTab('catalog')} className="hover:text-white transition">
+                      <button onClick={() => setStoreTab('catalog')} className="hover:text-slate-900 transition">
                         Trending Tech & Audio
                       </button>
                     </li>
                     <li>
-                      <button onClick={() => setStoreTab('catalog')} className="hover:text-white transition">
+                      <button onClick={() => setStoreTab('catalog')} className="hover:text-slate-900 transition">
                         Smart Home Ambience
                       </button>
                     </li>
                     <li>
-                      <button onClick={() => setStoreTab('catalog')} className="hover:text-white transition">
-                        Minimalist EDC Gear
+                      <button onClick={() => setStoreTab('catalog')} className="hover:text-slate-900 transition">
+                        Minimalist Everyday Carry
                       </button>
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-white uppercase tracking-wider mb-3 text-xs">Customer Protection</h4>
+                  <h4 className="font-bold text-slate-900 uppercase tracking-wider mb-3 text-xs">Customer Protection</h4>
                   <ul className="space-y-2">
                     <li>
-                      <button onClick={() => setStoreTab('track')} className="hover:text-white transition">
+                      <button onClick={() => setStoreTab('track')} className="hover:text-slate-900 transition">
                         Real-Time Parcel Tracking
                       </button>
                     </li>
                     <li className="text-slate-400">30-Day Money-Back Guarantee</li>
-                    <li className="text-slate-400">Air Freight Delivery Policy</li>
-                    <li className="text-slate-400">Verified Factory Audit SLA</li>
+                    <li className="text-slate-400">Line-Haul Express Air Freight</li>
+                    <li className="text-slate-400">Factory Audit Quality SLA</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-white uppercase tracking-wider mb-3 text-xs">Trust Badges</h4>
-                  <div className="p-3 bg-slate-800/60 rounded-xl border border-slate-700/60 space-y-2">
-                    <div className="flex items-center gap-2 text-emerald-400 font-semibold">
+                  <h4 className="font-bold text-slate-900 uppercase tracking-wider mb-3 text-xs">Security & Trust</h4>
+                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/60 space-y-2">
+                    <div className="flex items-center gap-2 text-emerald-600 font-semibold text-xs">
                       <ShieldCheck className="w-4 h-4" />
                       <span>256-Bit SSL Encrypted</span>
                     </div>
@@ -113,9 +113,9 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-[11px]">
+              <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-400 text-[11px]">
                 <p>© 2026 AuraStore & DropshipOS. All rights reserved.</p>
-                <p className="flex items-center gap-1">
+                <p className="flex items-center gap-1 font-medium text-slate-500">
                   Built with React JSX & Tailwind CSS
                 </p>
               </div>

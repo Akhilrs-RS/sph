@@ -160,9 +160,9 @@ export default function ProductDetailModal() {
                         key={oIdx}
                         type="button"
                         onClick={() => handleVariantSelect(v.name, opt)}
-                        className={`text-xs px-3.5 py-1.5 rounded-lg font-medium border transition ${
+                        className={`text-xs px-3.5 py-1.5 rounded-full font-medium border transition ${
                           isSelected
-                            ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                            ? 'bg-slate-950 text-white border-slate-950 shadow-2xs font-semibold'
                             : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                         }`}
                       >
@@ -194,11 +194,11 @@ export default function ProductDetailModal() {
           <div className="mt-6 pt-4 border-t border-slate-100">
             <div className="flex items-center gap-3">
               {/* Quantity Adjuster */}
-              <div className="flex items-center border border-slate-200 rounded-xl bg-slate-50 p-1">
+              <div className="flex items-center border border-slate-200 rounded-full bg-slate-50 p-1">
                 <button
                   type="button"
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                  className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-white rounded-lg transition font-bold"
+                  className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-white rounded-full transition font-bold"
                 >
                   -
                 </button>
@@ -206,7 +206,7 @@ export default function ProductDetailModal() {
                 <button
                   type="button"
                   onClick={() => setQuantity(q => q + 1)}
-                  className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-white rounded-lg transition font-bold"
+                  className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-white rounded-full transition font-bold"
                 >
                   +
                 </button>
@@ -216,9 +216,9 @@ export default function ProductDetailModal() {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-4 rounded-xl text-sm transition shadow"
+                className="flex-1 flex items-center justify-center gap-2 bg-slate-950 hover:bg-slate-800 text-white font-semibold py-3 px-5 rounded-full text-xs transition shadow-sm"
               >
-                <ShoppingCart className="w-4 h-4" />
+                <ShoppingCart className="w-3.5 h-3.5" />
                 <span>Add to Cart</span>
               </button>
 
@@ -226,9 +226,9 @@ export default function ProductDetailModal() {
               <button
                 type="button"
                 onClick={handleInstantBuy}
-                className="flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-md shadow-blue-500/20"
+                className="flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-5 rounded-full text-xs transition shadow-sm"
               >
-                <Zap className="w-4 h-4 fill-white" />
+                <Zap className="w-3.5 h-3.5 fill-white" />
                 <span className="hidden sm:inline">Instant Buy</span>
               </button>
             </div>

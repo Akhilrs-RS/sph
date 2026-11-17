@@ -65,27 +65,27 @@ export default function CartDrawer() {
           </div>
 
           {/* Free Shipping Meter */}
-          <div className="bg-blue-50/80 px-5 py-3 border-b border-blue-100/70 text-xs">
+          <div className="bg-slate-50 px-5 py-3 border-b border-slate-100 text-xs">
             {amountToFreeShipping > 0 ? (
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-blue-900 font-medium">
+                <div className="flex items-center justify-between text-slate-700 font-medium text-[11px]">
                   <span className="flex items-center gap-1.5">
-                    <Truck className="w-3.5 h-3.5 text-blue-600" />
-                    Add <strong className="font-bold text-blue-700">₹{amountToFreeShipping.toLocaleString('en-IN')}</strong> for Free Express Air!
+                    <Truck className="w-3.5 h-3.5 text-slate-800" />
+                    Add <strong className="font-bold text-slate-900">₹{amountToFreeShipping.toLocaleString('en-IN')}</strong> for Free Express Air
                   </span>
-                  <span className="font-bold text-blue-600">{Math.round(freeShippingProgress)}%</span>
+                  <span className="font-bold text-slate-800">{Math.round(freeShippingProgress)}%</span>
                 </div>
-                <div className="w-full bg-blue-200/60 rounded-full h-1.5 overflow-hidden">
+                <div className="w-full bg-slate-200/80 rounded-full h-1 overflow-hidden">
                   <div
-                    className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+                    className="bg-slate-900 h-1 rounded-full transition-all duration-300"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>
               </div>
             ) : (
-              <div className="flex items-center gap-2 text-emerald-700 font-bold">
+              <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs">
                 <Truck className="w-4 h-4 text-emerald-600" />
-                <span>🎉 You unlocked FREE Worldwide Tracked Express!</span>
+                <span>🎉 Unlocked FREE Line-Haul Express Delivery!</span>
               </div>
             )}
           </div>
@@ -226,10 +226,10 @@ export default function CartDrawer() {
                   setCartOpen(false);
                   setCheckoutOpen(true);
                 }}
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-blue-500/25 group"
+                className="w-full bg-slate-950 hover:bg-slate-800 text-white font-bold py-3.5 px-4 rounded-full text-xs flex items-center justify-center gap-2 transition shadow-sm group"
               >
-                <span>Proceed to Secure Checkout</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+                <span>Proceed to Checkout</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
               </button>
 
               <div className="flex items-center justify-center gap-2 text-[10px] text-slate-600 font-medium pt-1">

@@ -176,9 +176,9 @@ export default function CheckoutModal() {
               <div className="pt-4 flex justify-end">
                 <button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-5 rounded-xl text-xs flex items-center gap-1.5 transition shadow"
+                  className="bg-slate-950 hover:bg-slate-800 text-white font-semibold py-2.5 px-6 rounded-full text-xs flex items-center gap-2 transition shadow-sm"
                 >
-                  <span>Continue to Shipping Method</span>
+                  <span>Continue to Shipping</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -247,7 +247,7 @@ export default function CheckoutModal() {
                 <button
                   type="button"
                   onClick={() => setStep(3)}
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-5 rounded-xl text-xs flex items-center gap-1.5 transition shadow"
+                  className="bg-slate-950 hover:bg-slate-800 text-white font-semibold py-2.5 px-6 rounded-full text-xs flex items-center gap-2 transition shadow-sm"
                 >
                   <span>Continue to Payment</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -307,10 +307,10 @@ export default function CheckoutModal() {
                 <button
                   type="button"
                   onClick={handleCompleteOrder}
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 px-6 rounded-xl text-xs flex items-center gap-2 transition shadow-lg shadow-emerald-600/25"
+                  className="bg-slate-950 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-full text-xs flex items-center gap-2 transition shadow-sm"
                 >
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Authorize & Place Dropship Order (₹{finalTotal.toLocaleString('en-IN')})</span>
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>Authorize & Place Order (₹{finalTotal.toLocaleString('en-IN')})</span>
                 </button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-// Realistic, high-resolution product images and dropshipping data in INR (Indian Rupee)
+// Realistic, high-resolution product images, secondary hover angles, specifications and verified reviews in INR
 
 export const initialStoreProducts = [
   {
@@ -12,9 +12,11 @@ export const initialStoreProducts = [
     shippingCost: 199,
     rating: 4.8,
     reviewsCount: 342,
-    stock: 124,
-    shippingDays: "3-5 business days",
+    stock: 12,
+    hubLocation: "Bengaluru Logistics Hub",
+    shippingDays: "2-3 business days",
     badge: "Bestseller",
+    viewersCount: 23,
     images: [
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
       "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80",
@@ -30,6 +32,56 @@ export const initialStoreProducts = [
       "Quad-mic environmental noise cancellation for crystal calls",
       "Up to 48 hours playback on a single charge",
       "Lightweight ergonomic titanium alloy headband"
+    ],
+    specs: {
+      "Driver Size": "40mm Dynamic Neodymium",
+      "ANC Depth": "Up to -35dB Hybrid",
+      "Bluetooth": "v5.3 with AAC, SBC, LDAC",
+      "Battery Life": "48 Hours (ANC Off) / 36 Hours (ANC On)",
+      "Charging": "Type-C Fast Charge (10 mins = 5 hours)",
+      "Weight": "242 grams"
+    },
+    inTheBox: [
+      "Aura SoundPulse Pro Headphones",
+      "Hard-shell Magnetic Travel Case",
+      "Braided USB-C to USB-C Fast Cable",
+      "3.5mm Gold-Plated AUX Audio Cable",
+      "Airline Audio Adapter & Quick-Start Guide"
+    ],
+    reviews: [
+      {
+        id: "rev-1",
+        author: "Vikramaditya Nair",
+        location: "Koramangala, Bengaluru",
+        verified: true,
+        rating: 5,
+        date: "12 Nov 2026",
+        title: "Beats my ₹25k Sony headphones in comfort!",
+        comment: "The noise cancellation during Bengaluru metro commute is outstanding. Bass is punchy without distorting vocals. Delivered in just 2 days via BlueDart.",
+        helpful: 42
+      },
+      {
+        id: "rev-2",
+        author: "Ananya Deshmukh",
+        location: "Bandra West, Mumbai",
+        verified: true,
+        rating: 5,
+        date: "08 Nov 2026",
+        title: "Incredible battery life and call quality",
+        comment: "Used it continuously for 4 days of Zoom meetings and music without charging once. The mic filters out background fan noise easily.",
+        helpful: 29
+      },
+      {
+        id: "rev-3",
+        author: "Rohit Singhania",
+        location: "Sector 54, Gurugram",
+        verified: true,
+        rating: 4,
+        date: "03 Nov 2026",
+        title: "Solid soundstage, premium case",
+        comment: "Premium matte finish and soft cushions. Great value for ₹4,999. Travel case is compact and fits my backpack pocket.",
+        helpful: 15
+      }
     ],
     supplier: {
       name: "Shenzhen SoundTech Ltd.",
@@ -49,9 +101,11 @@ export const initialStoreProducts = [
     shippingCost: 149,
     rating: 4.7,
     reviewsCount: 218,
-    stock: 89,
-    shippingDays: "4-6 business days",
+    stock: 18,
+    hubLocation: "Mumbai Gateway Logistics",
+    shippingDays: "3-4 business days",
     badge: "Trending",
+    viewersCount: 16,
     images: [
       "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
       "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&q=80"
@@ -66,6 +120,43 @@ export const initialStoreProducts = [
       "Built-in ultra-sensitive acoustic music sensor",
       "Alexa & Google Assistant hands-free voice control",
       "Heavy weighted aluminum alloy base"
+    ],
+    specs: {
+      "LED Channels": "RGBIC Individually Addressable",
+      "Connectivity": "2.4GHz Wi-Fi + BLE 5.0",
+      "Power Source": "USB 5V/2A Direct Cable",
+      "Material": "Anodized Aerospace Aluminum + Optical Diffusion Acrylic",
+      "Voice Compatibility": "Google Home, Alexa, Apple Siri Shortcuts"
+    },
+    inTheBox: [
+      "2x Lumino Horizon Smart Lightbars",
+      "2x Weighted Desktop Bases",
+      "2x 3M Monitor Screen Mounts",
+      "1x USB-C Power Splitter Cable & RF Wireless Remote"
+    ],
+    reviews: [
+      {
+        id: "rev-4",
+        author: "Devendra Kulkarni",
+        location: "Kothrud, Pune",
+        verified: true,
+        rating: 5,
+        date: "14 Nov 2026",
+        title: "Elevated my desk setup completely",
+        comment: "The screen-sync and music rhythm modes are so responsive with zero lag. Connects smoothly to Google Home.",
+        helpful: 34
+      },
+      {
+        id: "rev-5",
+        author: "Sneha Patel",
+        location: "Satellite, Ahmedabad",
+        verified: true,
+        rating: 4,
+        date: "05 Nov 2026",
+        title: "Very bright and vibrant colors",
+        comment: "Great quality aluminum build. The remote is very handy when I don't want to use the smartphone app.",
+        helpful: 18
+      }
     ],
     supplier: {
       name: "Zhejiang OptoTech Co.",
@@ -85,9 +176,11 @@ export const initialStoreProducts = [
     shippingCost: 199,
     rating: 4.9,
     reviewsCount: 512,
-    stock: 67,
-    shippingDays: "3-5 business days",
+    stock: 7,
+    hubLocation: "Delhi NCR Logistics Hub",
+    shippingDays: "2-4 business days",
     badge: "Hot Deal",
+    viewersCount: 31,
     images: [
       "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80",
       "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?w=800&q=80"
@@ -102,6 +195,32 @@ export const initialStoreProducts = [
       "Scratch-resistant ceramic coating over stainless steel",
       "Smart LED temperature indicator ring",
       "Auto-sleep sensing technology"
+    ],
+    specs: {
+      "Battery Duration": "Up to 3 Hours standalone / All Day on Coaster",
+      "Temperature Range": "49°C to 63°C (Preset via Touch or App)",
+      "Capacity": "300ml (Standard) / 420ml (Grande)",
+      "Waterproofing": "IPX7 Submersible Washable",
+      "Lid": "Spill-Resistant 360° Sliding Lock Lid"
+    },
+    inTheBox: [
+      "VortexFlow Smart Ceramic Mug",
+      "Qi Fast Wireless Charging Coaster Base",
+      "BPA-Free Spill-Proof Lid",
+      "Power Adapter & 1.5m Braided Cable"
+    ],
+    reviews: [
+      {
+        id: "rev-6",
+        author: "Prateek Bansal",
+        location: "Vasant Kunj, New Delhi",
+        verified: true,
+        rating: 5,
+        date: "15 Nov 2026",
+        title: "Never drinking cold coffee again!",
+        comment: "I used to forget my coffee while coding and drink it cold. Now it stays at exact 55°C for hours on the coaster. Pure perfection.",
+        helpful: 67
+      }
     ],
     supplier: {
       name: "Ningbo ThermalWare Inc.",
@@ -121,9 +240,11 @@ export const initialStoreProducts = [
     shippingCost: 99,
     rating: 4.6,
     reviewsCount: 147,
-    stock: 210,
-    shippingDays: "2-4 business days",
+    stock: 24,
+    hubLocation: "Hyderabad Express Hub",
+    shippingDays: "2-3 business days",
     badge: "Compact",
+    viewersCount: 9,
     images: [
       "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80",
       "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80"
@@ -139,6 +260,32 @@ export const initialStoreProducts = [
       "Integrated bottle opener and pry-edge",
       "Pocket clip and detachable lanyard loop included"
     ],
+    specs: {
+      "Material": "Grade-5 Aerospace Titanium (Ti-6Al-4V)",
+      "Weight": "26 grams",
+      "Key Capacity": "Accommodates 2 to 14 standard flat keys",
+      "Integrated Tools": "Bottle opener, pry bar, ruler edge, pocket clip",
+      "Locator Compatibility": "Apple AirTag / Tile Mate slot insert"
+    },
+    inTheBox: [
+      "Aerolight Titanium Key Holder chassis",
+      "Extension Screws & 16 Silicone Washers",
+      "Detachable Deep-Carry Pocket Clip",
+      "AirTag Silicone Secure Capsule"
+    ],
+    reviews: [
+      {
+        id: "rev-7",
+        author: "Karthik Sundaram",
+        location: "Adyar, Chennai",
+        verified: true,
+        rating: 5,
+        date: "11 Nov 2026",
+        title: "No more jingling keys in gym shorts!",
+        comment: "Ultralight titanium and looks very stealthy in black. Bottle opener works effortlessly.",
+        helpful: 21
+      }
+    ],
     supplier: {
       name: "Dongguan Precision CNC",
       platform: "CJ Dropshipping",
@@ -149,7 +296,7 @@ export const initialStoreProducts = [
   {
     id: "prod-5",
     title: "Chronos Ultra-Slim Fitness & Sleep Tracker",
-    tagline: "AMOLED Curved Display with 14-Day Battery & Blood Oxygen Monitor",
+    tagline: "AMOLED Curved Display with 14-Day Battery & SpO2 Monitor",
     category: "Electronics",
     price: 3999,
     compareAtPrice: 6499,
@@ -157,9 +304,11 @@ export const initialStoreProducts = [
     shippingCost: 149,
     rating: 4.7,
     reviewsCount: 289,
-    stock: 94,
-    shippingDays: "3-5 business days",
+    stock: 14,
+    hubLocation: "Chennai Port Logistics",
+    shippingDays: "2-4 business days",
     badge: "Top Rated",
+    viewersCount: 28,
     images: [
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
       "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80"
@@ -174,6 +323,32 @@ export const initialStoreProducts = [
       "24/7 Continuous heart rate & blood oxygen tracking",
       "5ATM water resistant (up to 50 meters)",
       "14 days battery life on a 45-minute charge"
+    ],
+    specs: {
+      "Display": "1.47\" Curved AMOLED 368x194 pixels (Always-on support)",
+      "Water Resistance": "5ATM (Up to 50 meters swim proof)",
+      "Sensors": "Optical Heart Rate, SpO2 Blood Oxygen, 3-Axis Accelerometer",
+      "Battery": "180mAh (14 Days standard / 9 Days intensive)",
+      "App Compatibility": "iOS 12+ & Android 8.0+"
+    },
+    inTheBox: [
+      "Chronos Fitness Tracker Module",
+      "Anti-Bacterial Fluoroelastomer Strap",
+      "Magnetic Fast Pogo-Pin USB Charger",
+      "User Manual & Warranty Certificate"
+    ],
+    reviews: [
+      {
+        id: "rev-8",
+        author: "Meera Radhakrishnan",
+        location: "Kochi, Kerala",
+        verified: true,
+        rating: 5,
+        date: "09 Nov 2026",
+        title: "Accurate sleep tracking and gorgeous AMOLED screen",
+        comment: "The screen is bright even in direct sunlight. Sleep stages match my medical Oura ring closely. Outstanding value at ₹3,999.",
+        helpful: 39
+      }
     ],
     supplier: {
       name: "Shenzhen SoundTech Ltd.",
@@ -193,9 +368,11 @@ export const initialStoreProducts = [
     shippingCost: 149,
     rating: 4.8,
     reviewsCount: 175,
-    stock: 142,
-    shippingDays: "3-6 business days",
+    stock: 19,
+    hubLocation: "Bengaluru Logistics Hub",
+    shippingDays: "3-5 business days",
     badge: "Eco-Friendly",
+    viewersCount: 12,
     images: [
       "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80",
       "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?w=800&q=80"
@@ -210,6 +387,32 @@ export const initialStoreProducts = [
       "18/8 food-grade stainless steel interior",
       "Rechargeable waterproof magnetic USB charging port",
       "Keep cold 24h / Keep hot 12h"
+    ],
+    specs: {
+      "Sterilization Tech": "280nm UV-C LED deep purification (99.99% kill rate)",
+      "Insulation": "Double-Wall Vacuum 304 Food-Grade Stainless Steel",
+      "Battery Life": "Up to 30 Days of normal use on a single charge",
+      "Thermal Retention": "Cold 24 Hours / Hot 12 Hours",
+      "Charging": "Waterproof Magnetic Contact Pogo-Pin"
+    },
+    inTheBox: [
+      "HydroFlow UV-C Smart Bottle (500ml)",
+      "Magnetic Waterproof USB Charging Cable",
+      "Quick Instruction Manual",
+      "Food-Grade Safety Certificate"
+    ],
+    reviews: [
+      {
+        id: "rev-9",
+        author: "Aditya Sen",
+        location: "Salt Lake, Kolkata",
+        verified: true,
+        rating: 5,
+        date: "13 Nov 2026",
+        title: "No musty bottle smell ever again",
+        comment: "Auto-cleans every 2 hours silently. Kept ice water chilled throughout my 6-hour flight journey. Beautiful matte build.",
+        helpful: 27
+      }
     ],
     supplier: {
       name: "Ningbo ThermalWare Inc.",
@@ -337,7 +540,7 @@ export const initialOrders = [
     totalCost: 1999,
     grossProfit: 3000,
     status: "Pending Sourcing",
-    shippingCarrier: "BlueDart / Delhivery Surface",
+    shippingCarrier: "BlueDart Express",
     trackingNumber: null,
     placedAt: "2026-11-16T09:24:00Z",
     supplierPlatform: "CJ Dropshipping",
@@ -373,7 +576,7 @@ export const initialOrders = [
     totalCost: 1499,
     grossProfit: 2000,
     status: "In Transit",
-    shippingCarrier: "Delhivery Express",
+    shippingCarrier: "Delhivery Air Express",
     trackingNumber: "DLV994821039IN",
     placedAt: "2026-11-15T14:10:00Z",
     supplierPlatform: "Spocket US",

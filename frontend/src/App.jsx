@@ -4,6 +4,7 @@ import { useApp } from './context/AppContext';
 // Common Components
 import TopNavRoleSwitcher from './components/common/TopNavRoleSwitcher';
 import Toast from './components/common/Toast';
+import WishlistDrawer from './components/common/WishlistDrawer';
 
 // Storefront Components
 import StoreNavbar from './components/storefront/StoreNavbar';
@@ -125,6 +126,7 @@ export default function App() {
           {/* Modals & Slide-Overs */}
           <ProductDetailModal />
           <CartDrawer />
+          <WishlistDrawer />
           <CheckoutModal />
         </div>
       ) : (

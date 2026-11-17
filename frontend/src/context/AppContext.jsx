@@ -9,33 +9,45 @@ export function AppProvider({ children }) {
   const [adminTab, setAdminTab] = useState('dashboard'); // 'dashboard' | 'sourcing' | 'orders' | 'suppliers' | 'calculator' | 'settings'
   const [storeTab, setStoreTab] = useState('home'); // 'home' | 'catalog' | 'track'
 
-  // Catalog & Inventory State (using v2 keys for clean INR initialization)
+  // Catalog & Inventory State (using v3 keys for rich reviews & specs)
   const [storefrontProducts, setStorefrontProducts] = useState(() => {
-    const saved = localStorage.getItem('aura_inr_store_products_v2');
+    const saved = localStorage.getItem('aura_inr_store_products_v3');
     return saved ? JSON.parse(saved) : initialStoreProducts;
   });
 
   const [sourcingCatalog, setSourcingCatalog] = useState(() => {
-    const saved = localStorage.getItem('aura_inr_sourcing_catalog_v2');
+    const saved = localStorage.getItem('aura_inr_sourcing_catalog_v3');
     return saved ? JSON.parse(saved) : initialSourcingCatalog;
   });
 
   // Orders State
   const [orders, setOrders] = useState(() => {
-    const saved = localStorage.getItem('aura_inr_orders_v2');
+    const saved = localStorage.getItem('aura_inr_orders_v3');
     return saved ? JSON.parse(saved) : initialOrders;
   });
 
   // Suppliers State
   const [suppliers, setSuppliers] = useState(() => {
-    const saved = localStorage.getItem('aura_inr_suppliers_v2');
+    const saved = localStorage.getItem('aura_inr_suppliers_v3');
     return saved ? JSON.parse(saved) : initialSuppliers;
   });
 
   // Storefront Shopping Cart State
   const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('aura_inr_cart_v2');
+    const saved = localStorage.getItem('aura_inr_cart_v3');
     return saved ? JSON.parse(saved) : [];
+  });
+
+  // Wishlist State
+  const [wishlist, setWishlist] = useState(() => {
+    const saved = localStorage.getItem('aura_inr_wishlist');
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [wishlistOpen, setWishlistOpen] = useState(false);
+
+  // User Delivery Pincode State
+  const [userPincode, setUserPincode] = useState(() => {
+    return localStorage.getItem('aura_user_pincode') || '560038';
   });
 
   const [cartOpen, setCartOpen] = useState(false);
@@ -53,7 +65,9 @@ export function AppProvider({ children }) {
     currencyCode: 'INR',
     lowStockThreshold: 15,
     expressShippingRate: 199,
-    standardShippingRate: 0
+    standardShippingRate: 0,
+    codFee: 49,
+    prepaidDiscount: 100
   });
 
   // Toast Notification System
@@ -68,25 +82,78 @@ export function AppProvider({ children }) {
 
   // Sync state to LocalStorage
   useEffect(() => {
-    localStorage.setItem('aura_inr_store_products_v2', JSON.stringify(storefrontProducts));
+    localStorage.setItem('aura_inr_store_products_v3', JSON.stringify(storefrontProducts));
   }, [storefrontProducts]);
 
   useEffect(() => {
-    localStorage.setItem('aura_inr_sourcing_catalog_v2', JSON.stringify(sourcingCatalog));
+    localStorage.setItem('aura_inr_sourcing_catalog_v3', JSON.stringify(sourcingCatalog));
   }, [sourcingCatalog]);
 
   useEffect(() => {
-    localStorage.setItem('aura_inr_orders_v2', JSON.stringify(orders));
+    localStorage.setItem('aura_inr_orders_v3', JSON.stringify(orders));
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem('aura_inr_cart_v2', JSON.stringify(cart));
+    localStorage.setItem('aura_inr_cart_v3', JSON.stringify(cart));
   }, [cart]);
 
-  // Helper currency formatter
-  const formatINR = (val) => {
-    const num = typeof val === 'number' ? val : parseFloat(val) || 0;
-    return `₹${Math.round(num).toLocaleString('en-IN')}`;
+  useEffect(() => {
+    localStorage.setItem('aura_inr_wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+
+  useEffect(() => {
+    localStorage.setItem('aura_user_pincode', userPincode);
+  }, [userPincode]);
+
+  // Wishlist Actions
+  const toggleWishlist = (product) => {
+    setWishlist(prev => {
+      const exists = prev.some(item => item.id === product.id);
+      if (exists) {
+        showToast(`Removed "${product.title}" from Wishlist`, 'info');
+        return prev.filter(item => item.id !== product.id);
+      } else {
+        showToast(`Saved "${product.title}" to Wishlist!`, 'success');
+        return [...prev, product];
+      }
+    });
+  };
+
+  const isWishlisted = (productId) => {
+    return wishlist.some(item => item.id === productId);
+  };
+
+  // Pincode Delivery Resolver
+  const resolvePincode = (code) => {
+    const cleanCode = code ? code.trim() : '';
+    if (!/^\d{6}$/.test(cleanCode)) {
+      return { valid: false, error: 'Please enter a valid 6-digit Indian PIN code' };
+    }
+
+    const prefix = cleanCode.substring(0, 2);
+    let city = 'Metro Hub';
+    let state = 'India';
+    let days = '2-3 days';
+
+    if (prefix === '56') { city = 'Bengaluru'; state = 'Karnataka'; days = 'Next Day Delivery (Local Hub)'; }
+    else if (prefix === '40') { city = 'Mumbai'; state = 'Maharashtra'; days = '2 business days'; }
+    else if (prefix === '11') { city = 'Delhi NCR'; state = 'Delhi'; days = '2 business days'; }
+    else if (prefix === '50') { city = 'Hyderabad'; state = 'Telangana'; days = '2-3 business days'; }
+    else if (prefix === '60') { city = 'Chennai'; state = 'Tamil Nadu'; days = '2-3 business days'; }
+    else if (prefix === '70') { city = 'Kolkata'; state = 'West Bengal'; days = '3 business days'; }
+    else if (prefix === '41') { city = 'Pune'; state = 'Maharashtra'; days = '2 business days'; }
+    else if (prefix === '38') { city = 'Ahmedabad'; state = 'Gujarat'; days = '2-3 business days'; }
+    else { city = 'Regional Postal Zone'; state = 'India'; days = '3-5 business days'; }
+
+    return {
+      valid: true,
+      pincode: cleanCode,
+      city,
+      state,
+      estimatedDelivery: days,
+      codAvailable: true,
+      freeDelivery: true
+    };
   };
 
   // Cart Actions
@@ -135,11 +202,14 @@ export function AppProvider({ children }) {
   const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   // Place Order (from Customer Storefront)
-  const placeOrder = (customerDetails, shippingOption) => {
+  const placeOrder = (customerDetails, shippingOption, paymentMethod = 'upi') => {
     const orderNum = Math.floor(10000 + Math.random() * 90000);
     const orderId = `ORD-${orderNum}`;
     const shippingFee = shippingOption === 'express' ? settings.expressShippingRate : settings.standardShippingRate;
-    const finalAmount = cartSubtotal + shippingFee;
+    
+    // Prepaid gets ₹100 discount, COD gets ₹49 fee
+    const paymentAdjustment = paymentMethod === 'cod' ? settings.codFee : (paymentMethod === 'upi' ? -settings.prepaidDiscount : 0);
+    const finalAmount = Math.max(0, cartSubtotal + shippingFee + paymentAdjustment);
 
     const orderItems = cart.map(item => ({
       id: item.product.id,
@@ -162,18 +232,19 @@ export function AppProvider({ children }) {
       totalAmount: Math.round(finalAmount),
       totalCost: Math.round(totalCost),
       grossProfit: Math.round(grossProfit),
+      paymentMethod: paymentMethod.toUpperCase(),
       status: 'Pending Sourcing',
-      shippingCarrier: shippingOption === 'express' ? 'Priority Air Freight (BlueDart / Delhivery)' : 'Standard Surface Tracked Delivery',
+      shippingCarrier: shippingOption === 'express' ? 'BlueDart Air Express' : 'Delhivery Surface Tracked',
       trackingNumber: null,
       placedAt: new Date().toISOString(),
       supplierPlatform: 'CJ Dropshipping',
       autoFulfillEligible: true,
       trackingSteps: [
-        { stage: 'Order Placed', completed: true, timestamp: 'Just now', desc: 'Customer order verified & UPI/Card payment authorized.' },
+        { stage: 'Order Placed', completed: true, timestamp: 'Just now', desc: `Customer order confirmed via ${paymentMethod.toUpperCase()}. Payment verified.` },
         { stage: 'Supplier Sourced', completed: false, timestamp: 'Pending', desc: 'Automatic dropship PO queuing with vendor warehouse.' },
-        { stage: 'Carrier Dispatched', completed: false, timestamp: 'Pending', desc: 'Assigned to domestic line-haul transit.' },
+        { stage: 'Carrier Dispatched', completed: false, timestamp: 'Pending', desc: 'Assigned to line-haul transit flight/van.' },
         { stage: 'In Transit', completed: false, timestamp: 'Pending', desc: 'Regional hub arrival & sorting.' },
-        { stage: 'Delivered', completed: false, timestamp: 'Pending', desc: 'Final mile delivery to doorstep.' }
+        { stage: 'Delivered', completed: false, timestamp: 'Pending', desc: 'Final doorstep delivery by field courier.' }
       ]
     };
 
@@ -192,7 +263,7 @@ export function AppProvider({ children }) {
 
     clearCart();
     setCheckoutOpen(false);
-    showToast(`Order #${orderId} confirmed! Forwarded to Dropship Fulfillment queue.`, 'success');
+    showToast(`Order #${orderId} placed via ${paymentMethod.toUpperCase()}! Synced to Merchant OS.`, 'success');
     return newOrder;
   };
 
@@ -212,14 +283,43 @@ export function AppProvider({ children }) {
       rating: sourcingItem.supplierRating,
       reviewsCount: Math.floor(Math.random() * 80) + 12,
       stock: Math.min(sourcingItem.stockAvailable, 150),
+      hubLocation: "Bengaluru Logistics Hub",
       shippingDays: sourcingItem.shippingTime,
       badge: 'New Import',
-      images: [sourcingItem.image],
+      viewersCount: Math.floor(Math.random() * 20) + 5,
+      images: [
+        sourcingItem.image,
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
+      ],
       variants: [
         { name: "Model / Style", options: ["Standard Edition", "Premium Pro Edition"] }
       ],
       description: sourcingItem.description,
       features: sourcingItem.features,
+      specs: {
+        "Origin": "Verified Overseas OEM",
+        "Lead Time": sourcingItem.shippingTime,
+        "Warranty": "1-Year Manufacturer Replacement Warranty",
+        "Material": "Certified Grade Components"
+      },
+      inTheBox: [
+        sourcingItem.title,
+        "USB Fast Charging Cable",
+        "Warranty & User Documentation"
+      ],
+      reviews: [
+        {
+          id: `rev-${Date.now()}`,
+          author: "Sameer Verma",
+          location: "Indiranagar, Bengaluru",
+          verified: true,
+          rating: 5,
+          date: "Yesterday",
+          title: "Surpassed all expectations!",
+          comment: "High build quality, shipped quickly. Very happy with this direct factory purchase.",
+          helpful: 12
+        }
+      ],
       supplier: {
         name: sourcingItem.supplierName,
         platform: sourcingItem.platform,
@@ -229,7 +329,6 @@ export function AppProvider({ children }) {
     };
 
     setStorefrontProducts(prev => [newStoreProduct, ...prev]);
-    // remove or mark from sourcing catalog
     setSourcingCatalog(prev => prev.filter(item => item.id !== sourcingItem.id));
     showToast(`Imported "${sourcingItem.title}" to Storefront at ₹${finalPrice.toLocaleString('en-IN')}!`, 'success');
   };
@@ -248,7 +347,7 @@ export function AppProvider({ children }) {
             trackingNumber: generatedTracking,
             autoFulfillEligible: false,
             trackingSteps: [
-              { stage: 'Order Placed', completed: true, timestamp: 'Completed', desc: 'Order placed & payment authorized.' },
+              { stage: 'Order Placed', completed: true, timestamp: 'Completed', desc: `Verified via ${ord.paymentMethod || 'UPI'}.` },
               { stage: 'Supplier Sourced', completed: true, timestamp: 'Just now', desc: 'Automated PO sent to supplier. Stock reserved.' },
               { stage: 'Carrier Dispatched', completed: true, timestamp: 'In progress', desc: `Handed to ${ord.shippingCarrier}. Docket #${generatedTracking}.` },
               { stage: 'In Transit', completed: true, timestamp: 'Active', desc: 'En route to destination city sorting hub.' },
@@ -271,7 +370,7 @@ export function AppProvider({ children }) {
       })
     );
 
-    showToast(`Order #${orderId} fulfilled! Carrier Tracking #${generatedTracking} assigned.`, 'success');
+    showToast(`Order #${orderId} fulfilled! Assigned Docket #${generatedTracking}.`, 'success');
   };
 
   // Overall Business Metrics
@@ -303,6 +402,14 @@ export function AppProvider({ children }) {
         cart,
         cartOpen,
         setCartOpen,
+        wishlist,
+        wishlistOpen,
+        setWishlistOpen,
+        toggleWishlist,
+        isWishlisted,
+        userPincode,
+        setUserPincode,
+        resolvePincode,
         checkoutOpen,
         setCheckoutOpen,
         selectedProduct,
@@ -326,8 +433,7 @@ export function AppProvider({ children }) {
         placeOrder,
         importToStorefront,
         fulfillOrder,
-        metrics,
-        formatINR
+        metrics
       }}
     >
       {children}

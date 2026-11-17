@@ -11,14 +11,17 @@ import {
   DollarSign,
   AlertCircle,
   Eye,
-  X
+  X,
+  Copy,
+  Check
 } from 'lucide-react';
 
 export default function OrdersFulfillmentView() {
-  const { orders, fulfillOrder, setStoreTab, setTrackingLookupId, setActiveView } = useApp();
+  const { orders, fulfillOrder, setStoreTab, setTrackingLookupId, setActiveView, showToast } = useApp();
   const [statusFilter, setStatusFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [inspectOrder, setInspectOrder] = useState(null);
+  const [copiedAwb, setCopiedAwb] = useState(null);
 
   const statuses = ['All', 'Pending Sourcing', 'In Transit', 'Delivered'];
 
@@ -35,6 +38,14 @@ export default function OrdersFulfillmentView() {
     setTrackingLookupId(order.id);
     setActiveView('store');
     setStoreTab('track');
+  };
+
+  const handleCopyAwb = (awb, e) => {
+    e.stopPropagation();
+    navigator.clipboard?.writeText(awb);
+    setCopiedAwb(awb);
+    showToast(`AWB ${awb} copied!`);
+    setTimeout(() => setCopiedAwb(null), 2000);
   };
 
   return (
@@ -159,20 +170,35 @@ export default function OrdersFulfillmentView() {
                       <td className="py-3.5 px-4">
                         <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
                           isDelivered
-                            ? 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-emerald-50 text-emerald-800 border border-emerald-200/60'
                             : isInTransit
-                              ? 'bg-blue-100 text-blue-800'
-                              : 'bg-amber-100 text-amber-800'
+                              ? 'bg-blue-50 text-blue-800 border border-blue-200/60'
+                              : 'bg-amber-50 text-amber-800 border border-amber-200/60'
                         }`}>
                           {isDelivered && <CheckCircle2 className="w-3 h-3" />}
                           {isInTransit && <Truck className="w-3 h-3" />}
                           {isPending && <Clock className="w-3 h-3" />}
                           <span>{order.status}</span>
                         </span>
-                        {order.trackingNumber && (
-                          <span className="text-[10px] font-mono text-slate-600 block mt-0.5 truncate max-w-[130px]">
-                            {order.trackingNumber}
-                          </span>
+                        {order.trackingNumber ? (
+                          <div className="flex items-center gap-1 mt-1">
+                            <span className="text-[10px] font-mono text-slate-600 truncate max-w-[110px]" title={order.trackingNumber}>
+                              {order.trackingNumber}
+                            </span>
+                            <button
+                              onClick={(e) => handleCopyAwb(order.trackingNumber, e)}
+                              className="text-slate-400 hover:text-slate-700 p-0.5 rounded"
+                              title="Copy AWB Number"
+                            >
+                              {copiedAwb === order.trackingNumber ? (
+                                <Check className="w-3 h-3 text-emerald-600" />
+                              ) : (
+                                <Copy className="w-3 h-3" />
+                              )}
+                            </button>
+                          </div>
+                        ) : (
+                          <span className="text-[10px] text-slate-400 block mt-0.5">AWB Unassigned</span>
                         )}
                       </td>
 

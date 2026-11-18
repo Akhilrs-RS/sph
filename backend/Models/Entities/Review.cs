@@ -14,3 +14,4 @@ public class Review
     public bool IsVerifiedBuyer { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
+

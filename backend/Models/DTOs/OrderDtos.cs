@@ -82,3 +82,4 @@ public class FulfillOrderResponse
     public string Carrier { get; set; } = string.Empty;
     public decimal SupplierCostCharged { get; set; }
 }
+

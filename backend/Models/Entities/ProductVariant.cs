@@ -8,3 +8,4 @@ public class ProductVariant
     public string Name { get; set; } = string.Empty; // e.g. "Color", "Edition"
     public string OptionsJson { get; set; } = "[]"; // e.g. ["Midnight Matte Black", "Lunar Silver"]
 }
+

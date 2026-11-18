@@ -14,3 +14,4 @@ public class StoreSettings
     public decimal PrepaidDiscount { get; set; } = 100m;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }
+

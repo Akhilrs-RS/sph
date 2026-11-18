@@ -31,3 +31,4 @@ public class Product
     public List<ProductSpec> Specs { get; set; } = new();
     public List<Review> Reviews { get; set; } = new();
 }
+

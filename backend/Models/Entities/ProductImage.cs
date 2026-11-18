@@ -9,3 +9,4 @@ public class ProductImage
     public int DisplayOrder { get; set; } = 0;
     public bool IsPrimary { get; set; } = false;
 }
+

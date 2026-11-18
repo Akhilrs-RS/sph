@@ -8,3 +8,4 @@ public class ProductSpec
     public string SpecKey { get; set; } = string.Empty; // e.g. "Bluetooth", "Battery Life"
     public string SpecValue { get; set; } = string.Empty; // e.g. "v5.4 with aptX HD Lossless"
 }
+

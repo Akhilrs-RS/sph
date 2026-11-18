@@ -12,3 +12,4 @@ public class OrderTrackingEvent
     public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     public bool IsCompleted { get; set; } = false;
 }
+

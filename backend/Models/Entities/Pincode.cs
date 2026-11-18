@@ -10,3 +10,4 @@ public class Pincode
     public bool CodAvailable { get; set; } = true;
     public bool IsServiceable { get; set; } = true;
 }
+

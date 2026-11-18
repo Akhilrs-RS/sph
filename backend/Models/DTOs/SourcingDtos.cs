@@ -79,3 +79,4 @@ public class AdminMetricsDto
     public int ActiveCatalogCount { get; set; }
     public decimal AverageOrderValue { get; set; }
 }
+

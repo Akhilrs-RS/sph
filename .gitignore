@@ -12,7 +12,18 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# .NET / C#
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.sln.docstates
+
+# System & Misc
+Library/
+
 .vscode/*
 !.vscode/extensions.json
 .idea

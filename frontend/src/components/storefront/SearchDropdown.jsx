@@ -156,3 +156,4 @@ export default function SearchDropdown({ isOpen, onClose, inputQuery }) {
     </div>
   );
 }
+

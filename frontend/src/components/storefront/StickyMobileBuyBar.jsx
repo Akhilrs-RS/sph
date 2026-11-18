@@ -46,3 +46,4 @@ export default function StickyMobileBuyBar({ product, onAddToCart, onBuyNow }) {
     </div>
   );
 }
+

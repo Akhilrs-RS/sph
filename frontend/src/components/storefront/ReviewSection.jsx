@@ -267,3 +267,4 @@ export default function ReviewSection({ product }) {
     </div>
   );
 }
+

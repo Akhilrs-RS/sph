@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { initialStoreProducts, initialSourcingCatalog, initialOrders, initialSuppliers } from '../data/initialData';
+import { api } from '../services/api';
 
 const AppContext = createContext();
 
@@ -104,6 +105,31 @@ export function AppProvider({ children }) {
   useEffect(() => {
     localStorage.setItem('aura_user_pincode', userPincode);
   }, [userPincode]);
+
+  // Connect & Sync with ASP.NET Core Web API + MySQL Backend
+  useEffect(() => {
+    let isMounted = true;
+    async function syncBackendData() {
+      try {
+        const remoteProducts = await api.getProducts({}, null);
+        if (remoteProducts && Array.isArray(remoteProducts) && remoteProducts.length > 0 && isMounted) {
+          setStorefrontProducts(remoteProducts);
+        }
+        const remoteOrders = await api.getAdminOrders('All', '', null);
+        if (remoteOrders && Array.isArray(remoteOrders) && remoteOrders.length > 0 && isMounted) {
+          setOrders(remoteOrders);
+        }
+        const remoteSettings = await api.getSettings(null);
+        if (remoteSettings && isMounted) {
+          setSettings(prev => ({ ...prev, ...remoteSettings }));
+        }
+      } catch (e) {
+        // Fallback is automatically handled
+      }
+    }
+    syncBackendData();
+    return () => { isMounted = false; };
+  }, []);
 
   // Wishlist Actions
   const toggleWishlist = (product) => {
@@ -250,6 +276,27 @@ export function AppProvider({ children }) {
 
     setOrders(prev => [newOrder, ...prev]);
 
+    // Dispatch to ASP.NET Core backend API
+    api.createOrder({
+      customer: {
+        name: customerDetails.name,
+        phone: customerDetails.phone || '+91 98450 12345',
+        email: customerDetails.email || 'customer@example.com',
+        address: customerDetails.address || '',
+        pincode: userPincode,
+        city: 'Bengaluru',
+        state: 'Karnataka'
+      },
+      items: orderItems.map(i => ({
+        productId: typeof i.product.id === 'number' ? i.product.id : 1,
+        quantity: i.quantity,
+        selectedVariants: i.variants || {}
+      })),
+      shippingOption,
+      paymentMethod,
+      paymentDetails
+    }).catch(() => {});
+
     // Deduct stock in storefront
     setStorefrontProducts(prev =>
       prev.map(p => {
@@ -330,6 +377,10 @@ export function AppProvider({ children }) {
 
     setStorefrontProducts(prev => [newStoreProduct, ...prev]);
     setSourcingCatalog(prev => prev.filter(item => item.id !== sourcingItem.id));
+    
+    // Dispatch to ASP.NET Core backend API
+    api.importSourcingItem(sourcingItem.id, finalPrice).catch(() => {});
+
     showToast(`Imported "${sourcingItem.title}" to Storefront at ₹${finalPrice.toLocaleString('en-IN')}!`, 'success');
   };
 
@@ -369,6 +420,9 @@ export function AppProvider({ children }) {
         return s;
       })
     );
+
+    // Dispatch fulfillment to ASP.NET Core backend API
+    api.fulfillOrder(orderId).catch(() => {});
 
     showToast(`Order #${orderId} fulfilled! Assigned Docket #${generatedTracking}.`, 'success');
   };

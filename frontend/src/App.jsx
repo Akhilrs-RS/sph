@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useApp } from './context/AppContext';
-import { api } from './services/api';
 
 // Common Components
 import TopNavRoleSwitcher from './components/common/TopNavRoleSwitcher';
@@ -25,26 +24,10 @@ import SuppliersView from './components/admin/SuppliersView';
 import ProfitCalculatorView from './components/admin/ProfitCalculatorView';
 import SettingsView from './components/admin/SettingsView';
 
-import { ShieldCheck, Zap, Heart, Sparkles, CheckCircle2, ArrowRight, Lock, CreditCard, Send, Check } from 'lucide-react';
+import { ShieldCheck, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function App() {
-  const { activeView, adminTab, storeTab, setStoreTab, setSelectedCategory, showToast } = useApp();
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (!newsletterEmail || !newsletterEmail.includes('@')) return;
-    const emailToSave = newsletterEmail;
-    setSubscribed(true);
-    showToast('VIP Subscription Confirmed! Use code AURA500 for ₹500 off your first direct order.', 'success');
-    setNewsletterEmail('');
-
-    // Persist subscriber lead to ASP.NET Core & MySQL Backend in background
-    api.subscribeNewsletter(emailToSave).catch(() => {});
-
-    setTimeout(() => setSubscribed(false), 4000);
-  };
+  const { activeView, adminTab, storeTab, setStoreTab, setSelectedCategory } = useApp();
 
   const paymentBadges = [
     'BHIM UPI', 'Google Pay', 'PhonePe', 'Paytm', 'CRED', 'RuPay', 'Visa', 'Mastercard', 'Cash on Delivery'
@@ -73,51 +56,6 @@ export default function App() {
           {/* Premium Obsidian Jet-Black Storefront Footer */}
           <footer className="bg-black text-neutral-400 text-xs pt-16 pb-12 border-t border-neutral-900 mt-16 transition">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* VIP Early-Access Newsletter Subscription Bar */}
-              <div className="pb-12 mb-12 border-b border-neutral-900">
-                <div className="bg-neutral-950 rounded-3xl p-6 sm:p-8 border border-neutral-800/90 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-2xl">
-                  <div className="space-y-1.5 text-center lg:text-left">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold border border-blue-500/20">
-                      <Sparkles className="w-3 h-3 text-blue-400" />
-                      <span>VIP Hardware Dispatch</span>
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                      Unlock Factory Secret Drops & Early Coupon Codes
-                    </h3>
-                    <p className="text-xs text-neutral-400 max-w-lg">
-                      Join 15,000+ creators and engineers. Receive ₹500 off your first direct-from-source order.
-                    </p>
-                  </div>
-
-                  <form onSubmit={handleNewsletterSubmit} className="flex w-full sm:w-auto gap-2">
-                    <input
-                      type="email"
-                      required
-                      placeholder="Enter your email address..."
-                      value={newsletterEmail}
-                      onChange={(e) => setNewsletterEmail(e.target.value)}
-                      className="bg-neutral-900/90 border border-neutral-800 text-white placeholder-neutral-500 text-xs px-4 py-2.5 rounded-full focus:outline-none focus:border-blue-500 w-full sm:w-72 shadow-inner"
-                    />
-                    <button
-                      type="submit"
-                      className="px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold transition shrink-0 flex items-center gap-1.5 shadow-sm"
-                    >
-                      {subscribed ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>Subscribed!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-3.5 h-3.5" />
-                          <span>Join VIP List</span>
-                        </>
-                      )}
-                    </button>
-                  </form>
-                </div>
-              </div>
-
               {/* 4-Column Structured Directory */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-neutral-900">
                 {/* Column 1: Brand & Direct Mission */}

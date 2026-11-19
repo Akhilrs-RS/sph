@@ -82,6 +82,7 @@ public static class DbInitializer
                 ShippingDays = "2-4 business days",
                 HubLocation = "Bengaluru Line-Haul Hub",
                 ViewersCount = 28,
+                InTheBoxJson = JsonSerializer.Serialize(new[] { "Aura Pulse Pro ANC Headphones", "Hard Shell EVA Travel Case", "Braided USB-C to USB-C Audio Cable", "3.5mm Flight Adapter", "User Manual & 1-Year Warranty Card" }),
                 SupplierId = 1,
                 IsFeatured = true
             };
@@ -129,6 +130,7 @@ public static class DbInitializer
                 ShippingDays = "2-3 business days",
                 HubLocation = "Bengaluru Line-Haul Hub",
                 ViewersCount = 14,
+                InTheBoxJson = JsonSerializer.Serialize(new[] { "Aura Arc MagSafe Aluminum Stand", "Micro-Suction Base Ring", "Allen Wrench Tool", "Cable Routing Clip", "1-Year Warranty Card" }),
                 SupplierId = 2,
                 IsFeatured = true
             };
@@ -155,6 +157,7 @@ public static class DbInitializer
                 ShippingDays = "3-5 business days",
                 HubLocation = "Bengaluru Line-Haul Hub",
                 ViewersCount = 36,
+                InTheBoxJson = JsonSerializer.Serialize(new[] { "Aura Horizon Asymmetric Lightbar", "2.4GHz Wireless Rotary Desktop Puck", "Braided USB Type-C Power Cable (1.8m)", "Screen Mounting Weighted Clamp", "User Manual" }),
                 SupplierId = 4,
                 IsFeatured = true
             };
@@ -181,6 +184,7 @@ public static class DbInitializer
                 ShippingDays = "3-5 business days",
                 HubLocation = "Bengaluru Line-Haul Hub",
                 ViewersCount = 19,
+                InTheBoxJson = JsonSerializer.Serialize(new[] { "Aura KeyOne 75% Mechanical Keyboard", "2-in-1 Keycap & Switch Puller", "Braided Coiled USB-C to USB-A Cable", "3x Extra Accent PBT Keycaps", "Dust Cover" }),
                 SupplierId = 3,
                 IsFeatured = true
             };

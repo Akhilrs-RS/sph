@@ -68,9 +68,13 @@ public class OrderFulfillmentService : IOrderFulfillmentService
         }
 
         decimal shippingFee = request.ShippingOption == "express" ? settings.ExpressShippingRate : settings.StandardShippingRate;
-        decimal paymentAdjustment = request.PaymentMethod == "UPI"
+        var method = request.PaymentMethod ?? "UPI";
+        bool isUpi = method.Contains("UPI", StringComparison.OrdinalIgnoreCase);
+        bool isCod = method.Contains("COD", StringComparison.OrdinalIgnoreCase) || method.Contains("Cash on Delivery", StringComparison.OrdinalIgnoreCase);
+
+        decimal paymentAdjustment = isUpi
             ? -settings.PrepaidDiscount
-            : (request.PaymentMethod == "Cash on Delivery (COD)" ? settings.CodFee : 0m);
+            : (isCod ? settings.CodFee : 0m);
 
         decimal finalTotal = Math.Max(0, itemsTotal + shippingFee + paymentAdjustment);
         decimal grossProfit = finalTotal - totalSupplierCost - shippingFee;
@@ -96,8 +100,8 @@ public class OrderFulfillmentService : IOrderFulfillmentService
             SupplierCost = totalSupplierCost,
             GrossProfit = grossProfit,
             Status = "Pending Sourcing",
-            PaymentMethod = request.PaymentMethod,
-            PaymentStatus = request.PaymentMethod == "Cash on Delivery (COD)" ? "Pending" : "Paid",
+            PaymentMethod = method,
+            PaymentStatus = isCod ? "Pending" : "Paid",
             TrackingNumber = null,
             ShippingCarrier = carrier,
             CreatedAt = DateTime.UtcNow,

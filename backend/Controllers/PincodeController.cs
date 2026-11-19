@@ -6,6 +6,7 @@ namespace Aura.Dropship.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Route("api/pincodes")]
 public class PincodeController : ControllerBase
 {
     private readonly IPincodeService _pincodeService;

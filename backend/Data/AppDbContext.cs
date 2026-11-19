@@ -21,6 +21,7 @@ public class AppDbContext : DbContext
     public DbSet<OrderTrackingEvent> OrderTrackingEvents => Set<OrderTrackingEvent>();
     public DbSet<Pincode> Pincodes => Set<Pincode>();
     public DbSet<StoreSettings> StoreSettings => Set<StoreSettings>();
+    public DbSet<NewsletterSubscriber> NewsletterSubscribers => Set<NewsletterSubscriber>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -152,6 +153,13 @@ public class AppDbContext : DbContext
             entity.Property(e => e.StandardShippingRate).HasPrecision(18, 2);
             entity.Property(e => e.CodFee).HasPrecision(18, 2);
             entity.Property(e => e.PrepaidDiscount).HasPrecision(18, 2);
+        });
+
+        // Newsletter Subscriber
+        modelBuilder.Entity<NewsletterSubscriber>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.HasIndex(e => e.Email).IsUnique();
         });
     }
 }

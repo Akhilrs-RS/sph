@@ -225,6 +225,7 @@ public class ProductsController : ControllerBase
             Images = sortedImages.Count > 0 ? sortedImages : new List<string> { primaryImage },
             Variants = variants,
             Specs = specsDict,
+            InTheBox = TryDeserializeOptions(p.InTheBoxJson),
             Reviews = reviewsDto,
             Supplier = p.Supplier != null ? new SupplierSummaryDto
             {

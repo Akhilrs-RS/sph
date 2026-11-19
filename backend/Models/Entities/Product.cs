@@ -17,6 +17,7 @@ public class Product
     public string ShippingDays { get; set; } = "2-4 business days";
     public string HubLocation { get; set; } = "Bengaluru Line-Haul Hub";
     public int ViewersCount { get; set; } = 24;
+    public string InTheBoxJson { get; set; } = "[]";
     public bool IsFeatured { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;

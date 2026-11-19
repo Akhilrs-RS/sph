@@ -21,6 +21,7 @@ public class ProductDto
     public List<string> Images { get; set; } = new();
     public List<ProductVariantDto> Variants { get; set; } = new();
     public Dictionary<string, string> Specs { get; set; } = new();
+    public List<string> InTheBox { get; set; } = new();
     public List<ReviewDto> Reviews { get; set; } = new();
     public SupplierSummaryDto? Supplier { get; set; }
 }

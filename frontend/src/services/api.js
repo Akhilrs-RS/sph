@@ -144,6 +144,14 @@ export const api = {
       method: 'PUT',
       body: JSON.stringify(settingsData)
     }, fallbackFn);
+  },
+
+  // VIP Newsletter Lead Subscription
+  subscribeNewsletter: async (email, fallbackFn = null) => {
+    return fetchWithFallback('/newsletter/subscribe', {
+      method: 'POST',
+      body: JSON.stringify({ email })
+    }, fallbackFn);
   }
 };
 

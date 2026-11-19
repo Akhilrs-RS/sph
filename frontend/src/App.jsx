@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from './context/AppContext';
+import { api } from './services/api';
 
 // Common Components
 import TopNavRoleSwitcher from './components/common/TopNavRoleSwitcher';
@@ -34,9 +35,14 @@ export default function App() {
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
     if (!newsletterEmail || !newsletterEmail.includes('@')) return;
+    const emailToSave = newsletterEmail;
     setSubscribed(true);
     showToast('VIP Subscription Confirmed! Use code AURA500 for ₹500 off your first direct order.', 'success');
     setNewsletterEmail('');
+
+    // Persist subscriber lead to ASP.NET Core & MySQL Backend in background
+    api.subscribeNewsletter(emailToSave).catch(() => {});
+
     setTimeout(() => setSubscribed(false), 4000);
   };
 

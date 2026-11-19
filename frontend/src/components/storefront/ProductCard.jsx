@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Star, Plus, Heart, Eye } from 'lucide-react';
+import { Star, Plus, Heart, Zap } from 'lucide-react';
 
 export default function ProductCard({ product }) {
   const { setSelectedProduct, addToCart, toggleWishlist, isWishlisted } = useApp();
@@ -21,16 +21,23 @@ export default function ProductCard({ product }) {
   const secondaryImage = product.images?.[1] || primaryImage;
   const wishlisted = isWishlisted(product.id);
 
+  const discountAmount = product.compareAtPrice && product.compareAtPrice > product.price 
+    ? product.compareAtPrice - product.price 
+    : 0;
+  const discountPct = product.compareAtPrice && product.compareAtPrice > product.price
+    ? Math.round((discountAmount / product.compareAtPrice) * 100)
+    : 0;
+
   return (
     <div
       onClick={() => setSelectedProduct(product)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group bg-white rounded-2xl border border-slate-200/70 hover:border-slate-300 p-3 shadow-2xs hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+      className="group bg-white rounded-2xl border border-slate-200/80 hover:border-slate-300 p-3 shadow-2xs hover:shadow-lg hover:shadow-slate-200/60 transition-all duration-300 flex flex-col justify-between cursor-pointer"
     >
       <div>
         {/* Image Container with Smooth Secondary Hover Flip */}
-        <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-50 mb-3">
+        <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-50 mb-3 border border-slate-100">
           {/* Primary Image */}
           <img
             src={primaryImage}
@@ -45,7 +52,7 @@ export default function ProductCard({ product }) {
           {product.images?.[1] && (
             <img
               src={secondaryImage}
-              alt={`${product.title} alternate`}
+              alt={`${product.title} alternate view`}
               className={`w-full h-full object-cover object-center absolute inset-0 transition-transform duration-700 ease-out ${
                 isHovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
               }`}
@@ -53,14 +60,19 @@ export default function ProductCard({ product }) {
             />
           )}
 
-          {/* Top Left Badge */}
-          {product.badge && (
-            <div className="absolute top-2.5 left-2.5 z-10">
-              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-white/95 text-slate-800 shadow-2xs backdrop-blur-sm border border-slate-100">
+          {/* Top Left Badges: Custom Badge + Discount Pill */}
+          <div className="absolute top-2.5 left-2.5 z-10 flex flex-wrap gap-1">
+            {product.badge && (
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-950/90 text-white shadow-2xs backdrop-blur-xs">
                 {product.badge}
               </span>
-            </div>
-          )}
+            )}
+            {discountPct > 0 && (
+              <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 shadow-2xs border border-emerald-200/60">
+                -{discountPct}%
+              </span>
+            )}
+          </div>
 
           {/* Top Right Wishlist Heart Button */}
           <button
@@ -79,9 +91,9 @@ export default function ProductCard({ product }) {
           {/* Subtle Live Viewers Indicator on Hover */}
           {product.viewersCount && (
             <div className={`absolute bottom-2.5 left-2.5 z-10 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
-              <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-slate-900/75 text-white backdrop-blur-md inline-flex items-center gap-1">
+              <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-slate-950/75 text-white backdrop-blur-md inline-flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                {product.viewersCount} browsing
+                {product.viewersCount} viewing
               </span>
             </div>
           )}
@@ -91,7 +103,7 @@ export default function ProductCard({ product }) {
             <button
               type="button"
               onClick={handleQuickAdd}
-              className="flex items-center gap-1.5 bg-slate-950/90 hover:bg-slate-950 text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-md transition hover:scale-105"
+              className="flex items-center gap-1.5 bg-slate-950/95 hover:bg-slate-950 text-white text-[11px] font-bold px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-md transition hover:scale-105"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Quick Add</span>
@@ -128,8 +140,9 @@ export default function ProductCard({ product }) {
             </span>
           )}
         </div>
-        <span className="text-[10px] text-slate-400 font-medium">
-          {product.shippingDays ? product.shippingDays.split(' ')[0] : '2-4'}d freight
+        <span className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+          <Zap className="w-2.5 h-2.5 text-blue-600 fill-blue-600 inline" />
+          {product.shippingDays ? product.shippingDays.split(' ')[0] : '2-4'}d air
         </span>
       </div>
     </div>
